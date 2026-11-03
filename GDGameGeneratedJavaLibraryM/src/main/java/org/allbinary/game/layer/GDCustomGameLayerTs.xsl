@@ -1180,16 +1180,16 @@ Created By: Travis Berthelot
     public void updateWaypointBehavior(final BasicGeographicMap geographicMapInterface) throws Exception {
 
         final ABHashtable hashtable = new ABHashtable();
-        hashtable.put(groupCommonFactory.ID, this.getGroupInterface());
-        hashtable.put(Layer.ID, this);
-        hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManagerP);
+        this.hashtable.put(groupCommonFactory.ID, this.getGroupInterface());
+        this.hashtable.put(Layer.ID, this);
+        this.hashtable.put(AllBinaryGameLayerManager.ID, allBinaryGameLayerManagerP);
         
         this.setWaypointBehavior(
                 new GDWaypointBehavior2(
                         this, 
                         (CollidableDestroyableDamageableLayer) 
                         waypointLayerInterfaceFactoryInterface.getNextInstance(
-                                hashtable, x, y, z))
+                                this.hashtable, x, y, z))
                 );
 
         this.updateWaypointBehavior2(geographicMapInterface);

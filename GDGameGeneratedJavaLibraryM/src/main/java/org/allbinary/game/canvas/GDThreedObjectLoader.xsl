@@ -114,8 +114,8 @@ Created By: Travis Berthelot
                                     <xsl:when test="contains($image, 'left')">
 
                     Object3d <xsl:value-of select="$image" />Object3dContainer;
-                    final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
-                        gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, FALSE<xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                    final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = this.threedLoaderFactory.getObject3dInstance(
+                        this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, this.FALSE<xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
                       
                     appRendererShaderUpdaterFactory.setShaderComposite(<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer);
                     
@@ -134,8 +134,8 @@ Created By: Travis Berthelot
                                 <xsl:when test="contains($image, 'attack')" >
 
                     Object3d <xsl:value-of select="$image" />Object3dContainer;
-                    final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
-                        gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, FALSE<xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                    final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = <xsl:value-of select="$image" />Object3dContainer = this.threedLoaderFactory.getObject3dInstance(
+                        this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.MD2, this.FALSE<xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
 
                     appRendererShaderUpdaterFactory.setShaderComposite(<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer);
 
@@ -146,8 +146,8 @@ Created By: Travis Berthelot
                                 </xsl:when>
                                 <xsl:otherwise>
 
-                final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = threedLoaderFactory.getObject3dInstance(
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.OBJ, FALSE<xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
+                final Object3d <xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer = this.threedLoaderFactory.getObject3dInstance(
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>, gl, glInstanceVersion, modelTypeFactory.OBJ, this.FALSE<xsl:for-each select="/game/properties/custom" ><xsl:if test="name = $name and param" ><xsl:value-of select="param" /></xsl:if></xsl:for-each>);
 
                 appRendererShaderUpdaterFactory.setShaderComposite(<xsl:value-of select="$image" /><xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />Object3dContainer);
 
@@ -176,7 +176,7 @@ Created By: Travis Berthelot
                 
                 };
 
-                min3dSceneResourcesFactory.add(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, <xsl:value-of select="$name" />Object3dContainerArray);
+                this.min3dSceneResourcesFactory.add(this.animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME, <xsl:value-of select="$name" />Object3dContainerArray);
 
             }
                 </xsl:if>
@@ -192,12 +192,12 @@ Created By: Travis Berthelot
                 final AppRendererShaderUpdaterFactory appRendererShaderUpdaterFactory = AppRendererShaderUpdaterFactory.getInstance();
 
                 final Object3d mapCellModelObject3dContainer = 
-                        threedLoaderFactory.getObject3dInstance(
-                                this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, gl, glInstanceVersion, modelTypeFactory.OBJ, FALSE);
+                        this.threedLoaderFactory.getObject3dInstance(
+                                this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, gl, glInstanceVersion, modelTypeFactory.OBJ, this.FALSE);
 
                 appRendererShaderUpdaterFactory.setShaderComposite(mapCellModelObject3dContainer);
 
-                min3dSceneResourcesFactory.add(this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, new Object3d[] {mapCellModelObject3dContainer});
+                this.min3dSceneResourcesFactory.add(this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL, new Object3d[] {mapCellModelObject3dContainer});
 
                 this.addMapCell(gl, mapCellModelObject3dContainer.cloneImmutable(), this.animationInterfaceFactoryInterfaceFactory.MAP_CELL_MODEL_IMAGE);
             

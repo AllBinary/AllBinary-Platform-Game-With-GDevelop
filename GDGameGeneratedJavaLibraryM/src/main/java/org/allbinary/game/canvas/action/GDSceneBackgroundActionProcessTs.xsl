@@ -35,13 +35,13 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
 
-                            this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                            this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
-                            final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                            final BasicColor backgroundBasicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
                                 basicColorUtil.getARGB(255,
                                     <xsl:value-of select="$rgbParam" />));
                                     //ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
-                            final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                            final BasicColor foregroundBasicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
                                 basicColorUtil.getARGB(255, 
                                     255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                     //ACTION_AS_STRING_GD_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />
@@ -72,7 +72,7 @@ Created By: Travis Berthelot
 
                             return this.process();
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
                         return true;                   
                     }

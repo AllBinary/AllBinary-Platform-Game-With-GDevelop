@@ -149,7 +149,7 @@ Created By: Travis Berthelot
             <xsl:text>&#10;</xsl:text>
             </xsl:variable>
 
-            <xsl:variable name="logString" >EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+            <xsl:variable name="logString" >this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
                         
             <xsl:variable name="actionWithTextObjectString" >
                 <xsl:for-each select="actions" >

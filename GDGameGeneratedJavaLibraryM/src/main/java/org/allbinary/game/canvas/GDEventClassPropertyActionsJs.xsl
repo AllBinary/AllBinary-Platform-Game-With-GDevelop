@@ -111,9 +111,9 @@ Created By: Travis Berthelot
         //name=<xsl:value-of select="$name" /> - //hasJSONUsage=<xsl:value-of select="$hasJSONUsage" />
         <xsl:if test="contains($hasJSONUsage, 'found')" >
         public int getJSONType() {
-            if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
+            if(<xsl:value-of select="$name" />JSONArray != this.nullUtil.NULL_OBJECT) {
                 return 2;
-            } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
+            } else if(<xsl:value-of select="$name" />JSONObject != this.nullUtil.NULL_OBJECT) {
                 return 1;
             } else {
                 this.logUtil.putF("Not JSONArray or JSONObject", this, "getJSONType()");
@@ -122,9 +122,9 @@ Created By: Travis Berthelot
         }
 
         public String toJSONAsString() {
-            if(<xsl:value-of select="$name" />JSONArray != nullUtil.NULL_OBJECT) {
+            if(<xsl:value-of select="$name" />JSONArray != this.nullUtil.NULL_OBJECT) {
                 return this.<xsl:value-of select="$name" />JSONArray.toString();
-            } else if(<xsl:value-of select="$name" />JSONObject != nullUtil.NULL_OBJECT) {
+            } else if(<xsl:value-of select="$name" />JSONObject != this.nullUtil.NULL_OBJECT) {
                 return this.<xsl:value-of select="$name" />JSONObject.toString();
             } else {
                 this.logUtil.putF("Not JSONArray or JSONObject", this, "toJSONAsString");

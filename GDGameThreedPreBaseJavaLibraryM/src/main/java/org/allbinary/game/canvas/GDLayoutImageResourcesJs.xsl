@@ -159,11 +159,11 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            this.logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(this.commonStrings.CONSTRUCTOR, this, this.commonStrings.CONSTRUCTOR);
                     
                             final PointFactory pointFactory = PointFactory.getInstance();
 
-                            final ABHashtable hashTable = imageCache.getHashtableP();
+                            final ABHashtable hashTable = this.imageCache.getHashtableP();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -216,7 +216,7 @@ Created By: Travis Berthelot
                             <xsl:variable name="isTextInput" ><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'TextInput::TextInputObject'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:variable name="isPrimitiveDrawingDrawer" ><xsl:for-each select="//objects" ><xsl:if test="name = $name" ><xsl:if test="type = 'PrimitiveDrawing::Drawer'" >found</xsl:if></xsl:if></xsl:for-each></xsl:variable>
                             <xsl:if test="not(contains(name, 'btn_') or contains($isTextObject, 'found') or contains($isTextInput, 'found') or contains($isPrimitiveDrawingDrawer, 'found'))" >
-                                <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
+                                this.<xsl:value-of select="$objectGroupName" />ImageArrayList.add(this.<xsl:value-of select="name" />ImageArray);
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
@@ -254,7 +254,7 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             image = imageArray[index];
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                this.logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception());
+                                this.logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, this.commonStrings.PROCESS, new Exception());
                             }
                         }
                     }

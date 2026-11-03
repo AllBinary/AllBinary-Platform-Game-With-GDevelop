@@ -64,11 +64,11 @@ Created By: Travis Berthelot
                     //JSON
                     <xsl:variable name="valueIteratorVariableName" select="valueIteratorVariableName/text()" />
                     //JSONArray
-                    if(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONArray != nullUtil.NULL_OBJECT) {
+                    if(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONArray != this.nullUtil.NULL_OBJECT) {
                     final JSONArray jsonArray = (JSONArray) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONArray;
                     final int size = jsonArray.length();
                     
-                    this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, this.commonStrings.PROCESS);
+                    this.logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, this.commonStrings.PROCESS);
                     
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
 
@@ -126,12 +126,12 @@ Created By: Travis Berthelot
                     }
                     } else
                     //JSONObject
-                    if(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject != nullUtil.NULL_OBJECT) {
+                    if(<xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject != this.nullUtil.NULL_OBJECT) {
                     final JSONObject jsonObject = (JSONObject) <xsl:call-template name="addGlobals" ><xsl:with-param name="text" ><xsl:value-of select="iterableVariableName/text()" /></xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param></xsl:call-template>JSONObject;
                     final JSONArray array = jsonObject.names();
                     final int size = jsonObject.length();
 
-                    this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, this.commonStrings.PROCESS);
+                    this.logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + size, this, this.commonStrings.PROCESS);
                     
                     String name;
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -191,7 +191,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
                     }
                     } else {
-                        this.logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, new Exception());
+                        this.logUtil.put(this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, new Exception());
                     }
 
                     </xsl:if>
@@ -256,7 +256,7 @@ Created By: Travis Berthelot
 
                         return this.process();
                     } catch(Exception e) {
-                        this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                        this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                     }
                     return true;                   
                 }

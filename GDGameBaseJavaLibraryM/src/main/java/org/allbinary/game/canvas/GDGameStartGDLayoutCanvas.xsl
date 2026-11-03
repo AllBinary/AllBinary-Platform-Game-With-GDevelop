@@ -96,7 +96,7 @@ public class <xsl:value-of select="$layoutName" /> extends StartCanvas
 
         this.setDefaultPaintableInterface(
                 //ColorFillPaintableFactory.getInstance().getInstance(BasicColorFactory.getInstance().RED)
-                ColorFillPaintableFactory.getInstance().getInstance(smallBasicColorCacheFactory.getAndOrCreate(
+                ColorFillPaintableFactory.getInstance().getInstance(this.smallBasicColorCacheFactory.getAndOrCreate(
                                 basicColorUtil.getARGB(255,
                     <xsl:variable name="color" >
                         <xsl:for-each select="events" >

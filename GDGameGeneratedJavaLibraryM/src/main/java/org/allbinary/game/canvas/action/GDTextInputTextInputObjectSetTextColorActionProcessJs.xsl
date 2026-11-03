@@ -89,7 +89,7 @@ Created By: Travis Berthelot
                                         final BasicArrayList <xsl:value-of select="$param" />GDGameLayerList = <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="$param" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="$param" />GDGameLayerList;
                                     </xsl:if>
 
-                                        final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
+                                        final BasicColor basicColor = this.smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
                                         final int size = <xsl:value-of select="$param" />GDGameLayerList.size();
                                         GDGameLayer gameLayer;
                                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
@@ -108,7 +108,7 @@ Created By: Travis Berthelot
 
 
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
 
                             return true;
@@ -133,13 +133,13 @@ Created By: Travis Berthelot
 
                             final int colorAsInt = basicColorUtil.get<xsl:value-of select="$color" />);
                             <xsl:text>&#10;</xsl:text>
-                            final BasicColor basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
+                            final BasicColor basicColor = this.smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
                             <xsl:value-of select="$param" />GDGameLayer.setBasicColor(basicColor);
 
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>              
 
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
 
                         return true;

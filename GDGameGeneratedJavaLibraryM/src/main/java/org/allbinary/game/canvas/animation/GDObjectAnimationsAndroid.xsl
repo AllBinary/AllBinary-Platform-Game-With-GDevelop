@@ -116,7 +116,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
-                final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
+                final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
 
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
@@ -228,11 +228,11 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.createXY(
+                                this.pointFactory.createXY(
                                 <xsl:if test="animations/directions/sprites/originPoint/x != 0" >
                                 (<xsl:value-of select="animations/directions/sprites/originPoint/x" /> * 36 / 25) - (<xsl:value-of select="animations/directions/sprites/originPoint/x" />), 
                                 </xsl:if>
@@ -290,7 +290,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="animationName1" ><xsl:for-each select="animations" ><xsl:if test="position() = 1" ><xsl:value-of select="$name" /><xsl:value-of select="name" />1</xsl:if></xsl:for-each></xsl:variable>
 
@@ -329,7 +329,7 @@ Created By: Travis Berthelot
                 final float newX = (<xsl:value-of select="$name" />LayerInfo.getWidth() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getWidth()) / 2;
                 final float newY = (<xsl:value-of select="$name" />LayerInfo.getHeight() * 1.44f - <xsl:value-of select="$name" />LayerInfo.getHeight()) / 2;
                 final Rectangle <xsl:value-of select="$name" />RotationCollisionMask = new Rectangle(
-                                pointFactory.createXY((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
+                                this.pointFactory.createXY((int) (newX * 3 * autoScale), (int) (newY * 3 * autoScale)), (int) (<xsl:value-of select="$name" />LayerInfo.getWidth() * 3 * autoScale), (int) (<xsl:value-of select="$name" />LayerInfo.getHeight() * 3 * autoScale)
                                 );
                 for(int index2 = 0; index2 <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> <xsl:value-of select="$animationTotal" />; index2++) {
                     for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> 360; index++) {
@@ -354,7 +354,7 @@ Created By: Travis Berthelot
                                     <xsl:if test="$position = 1" >
                                     <xsl:if test="$name != 'Player'" >
                                         //non Player
-                                        final float hackScale = scale * 0.67f;
+                                        final float hackScale = this.scale * 0.67f;
                                     </xsl:if>
                                     <xsl:if test="$name = 'Player'" >
                                         //Player
@@ -365,7 +365,7 @@ Created By: Travis Berthelot
                 final float widthF = ((<xsl:value-of select="array[3]/x" /> - <xsl:value-of select="array[1]/x" />) * hackScale);
                 final float heightF = ((<xsl:value-of select="array[4]/y" /> - <xsl:value-of select="array[1]/y" />) * hackScale);
                 final Rectangle <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask = new Rectangle(
-                                pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> + widthF / 4), (int) (<xsl:value-of select="array[1]/y" /> + heightF / 4)), 
+                                this.pointFactory.createXY((int) (<xsl:value-of select="array[1]/x" /> + widthF / 4), (int) (<xsl:value-of select="array[1]/y" /> + heightF / 4)), 
                                 (int) widthF, (int) heightF);
 
 //                this.logUtil.putF("Rectangle: " + <xsl:value-of select="$name" /><xsl:value-of select="$animationName" /><xsl:value-of select="$position" />CollisionMask, this, this.commonStrings.PROCESS);
@@ -410,7 +410,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="$animationPosition = last() and (contains($hasCustomCollisionMask, 'found') or not(contains($hasMoreThanOneImageOrRotationDisabled, 'found') and contains($hasCustomCollisionMask, 'found')))" >
-                this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
+                this.addRectangleArrayOfArrays(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                     </xsl:if>
 
                     </xsl:if>
@@ -510,7 +510,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="$animationPosition = last()" >
-                this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
+                this.addRectangleArrayOfArrays(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                     </xsl:if>
                                                                                         
                     </xsl:if>                    
@@ -538,7 +538,7 @@ Created By: Travis Berthelot
                 <xsl:if test="not(contains($name, 'btn_'))" >
                 //Animation Total: <xsl:value-of select="count(animations)" />
 
-                final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
+                final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
 
                 if(<xsl:value-of select="name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="name" />ImageArray was null (This happens 1 time during the initial loading)");
@@ -552,8 +552,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -568,7 +568,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
@@ -587,7 +587,7 @@ Created By: Travis Berthelot
             <xsl:when test="$typeValue = 'PanelSpriteSlider::PanelSpriteSlider'" >
             private void add<xsl:value-of select="name" />PanelSpriteSliderAnimations(final ImageCache imageCache) throws Exception {
             
-                final Image[] <xsl:value-of select="$name" />ImageArray = (Image[]) imageCache.getHashtableP().get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
+                final Image[] <xsl:value-of select="$name" />ImageArray = (Image[]) imageCache.getHashtableP().get(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_IMAGE_ARRAY_NAME);
 
                 if(<xsl:value-of select="$name" />ImageArray == null) {
                     throw new Exception("<xsl:value-of select="$name" />ImageArray was null (This happens 1 time during the initial loading)");
@@ -732,8 +732,8 @@ Created By: Travis Berthelot
                 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="$name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="$name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -744,7 +744,7 @@ Created By: Travis Berthelot
                </xsl:for-each>
                                 );
 
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="$name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="$name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="$name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             }
@@ -771,11 +771,11 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
-                                pointFactory.createXY(0, 0),
+                                this.pointFactory.createXY(0, 0),
                                 <xsl:value-of select="name" />TextAnimationSize * (12 - 1), <xsl:value-of select="name" />TextAnimationSize
                                 );
 
@@ -787,7 +787,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             }
@@ -807,8 +807,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -823,7 +823,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
 

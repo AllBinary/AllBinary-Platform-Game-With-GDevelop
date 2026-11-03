@@ -144,13 +144,13 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
                 final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame2];
                 final GPoint maskPoint = maskRectangle.getPoint();
                         
-                return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
+                return this.rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
                     viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskPoint.getX() + maskRectangle.getWidth(), viewY + maskPoint.getY() + maskRectangle.getHeight());
             
             } else {
 
-                return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
+                return this.rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
                     viewX, viewY, viewX + customGameLayer.getWidth(), viewY + customGameLayer.getHeight());
 
@@ -259,13 +259,13 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
                 final Rectangle maskRectangle = customGameLayer.rectangleArrayOfArrays[customGameLayer.gdObject.animation][frame2];
                 final GPoint maskPoint = maskRectangle.getPoint();
 
-                return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
+                return this.rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY( )+ ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
                     viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskPoint.getX() + maskRectangle.getWidth(), viewY + maskPoint.getY() + maskRectangle.getHeight());
                         
             } else {
 
-                return rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY() + ownerMaskRectangle.getHeight(), 
+                return this.rectangleCollisionUtil.isCollision(ownerViewX + ownerMaskPoint.getX(), ownerViewY + ownerMaskPoint.getY(), ownerViewX + ownerMaskPoint.getX() + ownerMaskRectangle.getWidth(), ownerViewY + ownerMaskPoint.getY() + ownerMaskRectangle.getHeight(), 
                     //viewX + maskPoint.getX(), viewY + maskPoint.getY(), viewX + maskRectangle.getWidth(), viewY + maskRectangle.getHeight());
                     viewX, viewY, viewX + customGameLayer.getWidth(), viewY + customGameLayer.getHeight());
 
@@ -387,12 +387,12 @@ public class GDCustomMaskCollidableBehavior extends CollidableBaseBehavior
     
         int size = ownerLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]));
+            stringBuilder.append(this.stringUtil.toString(ownerLayer.getGroupInterface()[index]));
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]));
+            stringBuilder.append(this.stringUtil.toString(collisionLayer.getGroupInterface()[index]));
         }
         return stringBuilder.toString();
     }

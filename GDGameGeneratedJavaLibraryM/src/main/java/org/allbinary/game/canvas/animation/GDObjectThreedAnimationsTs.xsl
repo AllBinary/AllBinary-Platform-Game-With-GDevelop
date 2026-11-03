@@ -33,7 +33,7 @@ Created By: Travis Berthelot
 
         <xsl:if test="contains($foundTileMap, 'found')" >
                 this.add(this.specialAnimationResources.MAP_CELL_MODEL_IMAGE, 
-                    new ThreedAnimationSingletonFactory(min3dSceneResourcesFactory.get(
+                    new ThreedAnimationSingletonFactory(this.min3dSceneResourcesFactory.get(
                         this.specialAnimationResources.MAP_CELL_MODEL_IMAGE)[0])
                 );
         </xsl:if>
@@ -143,8 +143,8 @@ Created By: Travis Berthelot
                 <xsl:for-each select="/game/properties/custom" >
                     <xsl:if test="name = $name" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
                     </xsl:if>
                 </xsl:for-each>
             </xsl:when>
@@ -153,8 +153,8 @@ Created By: Travis Berthelot
                     <xsl:if test="name = 'all'" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
                 //TWB - replace this logic with a animation to texture mapping for each md2
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
                     </xsl:if>
                 </xsl:for-each>
             </xsl:when>
@@ -163,7 +163,7 @@ Created By: Travis Berthelot
         </xsl:choose>
 
                 final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayListD();
-                final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
+                final Object3d[] <xsl:value-of select="name" />Object3dArray = this.min3dSceneResourcesFactory.get(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int[] loopTotalArray = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>,</xsl:for-each></xsl:for-each>};
                 final long[] frameDelayTime = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:value-of select="timeBetweenFrames * 1000" />,</xsl:for-each></xsl:for-each>};
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
@@ -188,7 +188,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedMorphingAnimationSingletonFactory(
                                 object3d, loopTotalArray[index], frameDelayTime[index],
         		        new String[] {
-                                    specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
+                                    this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
                                     //TWB - Use this as a second animation for now
                                     //specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME
         			},
@@ -208,8 +208,8 @@ Created By: Travis Berthelot
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArrayType(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(
@@ -273,7 +273,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="animationName1" ><xsl:for-each select="animations" ><xsl:if test="position() = 1" ><xsl:value-of select="$name" /><xsl:value-of select="name" />1</xsl:if></xsl:for-each></xsl:variable>
 
@@ -369,7 +369,7 @@ Created By: Travis Berthelot
                         }
                     }
 
-                    this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
+                    this.addRectangleArrayOfArrays(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
 
                 } 
                                 </xsl:if>
@@ -410,7 +410,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="$animationPosition = last() and contains($hasCustomCollisionMask, 'found')" >
-                this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
+                this.addRectangleArrayOfArrays(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                     </xsl:if>
 
                     </xsl:if>           
@@ -502,7 +502,7 @@ Created By: Travis Berthelot
                     </xsl:for-each>
 
                     <xsl:if test="$animationPosition = last()" >
-                this.addRectangleArrayOfArrays(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
+                this.addRectangleArrayOfArrays(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, rectangleArrayOfArrays);
                     </xsl:if>
                                                                                         
                     </xsl:if>                    
@@ -545,8 +545,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -561,7 +561,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
@@ -633,8 +633,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -649,7 +649,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
@@ -675,8 +675,8 @@ Created By: Travis Berthelot
                 <xsl:for-each select="/game/properties/custom" >
                     <xsl:if test="name = $name" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
                     </xsl:if>
                 </xsl:for-each>
             </xsl:when>
@@ -685,8 +685,8 @@ Created By: Travis Berthelot
                     <xsl:if test="name = 'all'" >
                 //name=<xsl:value-of select="name" /> texture=<xsl:value-of select="texture" />
                 //TWB - replace this logic with a animation to texture mapping for each md2
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
-                animationToTextureFactory.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                animationToTextureFactory.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
                     </xsl:if>
                 </xsl:for-each>
             </xsl:when>
@@ -695,7 +695,7 @@ Created By: Travis Berthelot
         </xsl:choose>
 
                 final BasicArrayList <xsl:value-of select="name" />List = new BasicArrayListD();
-                final Object3d[] <xsl:value-of select="name" />Object3dArray = min3dSceneResourcesFactory.get(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
+                final Object3d[] <xsl:value-of select="name" />Object3dArray = this.min3dSceneResourcesFactory.get(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME);
                 final int[] loopTotalArray = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:if test="looping = 'true'" >-1</xsl:if><xsl:if test="looping = 'false'" >1</xsl:if>,</xsl:for-each></xsl:for-each>};
                 final long[] frameDelayTime = {<xsl:for-each select="animations" ><xsl:for-each select="directions" ><xsl:value-of select="timeBetweenFrames * 1000" />,</xsl:for-each></xsl:for-each>};
                 final int <xsl:value-of select="name" />Size = <xsl:value-of select="name" />Object3dArray.length;
@@ -714,7 +714,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="name" />List.add(new <xsl:if test="/game/properties/threedAnimationAdjustment" >Adjustable</xsl:if>ThreedMorphingAnimationSingletonFactory(
                                 object3d, loopTotalArray[index], frameDelayTime[index],
         		        new String[] {
-                                    specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
+                                    this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME,
                                     //TWB - Use this as a second animation for now
                                     //specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME
         			},
@@ -734,8 +734,8 @@ Created By: Travis Berthelot
                 final AnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) <xsl:value-of select="name" />List.toArrayType(new AnimationInterfaceFactoryInterface[<xsl:value-of select="name" />Size]);
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -750,7 +750,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
@@ -792,8 +792,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -808,7 +808,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             }
@@ -827,8 +827,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -843,7 +843,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 //final GDConditionWithGroupActions <xsl:value-of select="name" />GDConditionWithGroupActions = new GDConditionWithGroupActions();
             
@@ -991,8 +991,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -1007,7 +1007,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>
@@ -1050,8 +1050,8 @@ Created By: Travis Berthelot
 
                 final BasicAnimationInterfaceFactoryInterface[] <xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = new BasicAnimationInterfaceFactoryInterface[0];
                 
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
-                this.add(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_ANIMATION_NAME, new AnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray));
+                this.add(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_PROCEDURAL_ANIMATION_NAME, new BaseAnimationInterfaceFactoryInterfaceComposite(<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray));
                 
                 final Rectangle <xsl:value-of select="name" />LayerInfo = new Rectangle(
                                 pointFactory.createXY(0, 0),
@@ -1066,7 +1066,7 @@ Created By: Travis Berthelot
                                         <xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:variable>
-                this.addRectangle(specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
+                this.addRectangle(this.specialAnimationResources.<xsl:value-of select="$nameInUpperCase" />_RECTANGLE_NAME, <xsl:value-of select="name" />LayerInfo);
 
                 <xsl:variable name="groupInterfaceArray" >
                     <xsl:if test="string-length($parentGroupIfAny) > 0" >new Group[] {this.globals.<xsl:value-of select="$parentGroupIfAny" />GroupInterface, <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GroupInterface}</xsl:if>

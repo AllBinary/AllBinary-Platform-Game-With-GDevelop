@@ -75,7 +75,7 @@ Created By: Travis Berthelot
                         <xsl:value-of select="$param1" /> = <xsl:value-of select="$param2" />;
 
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
                         return true;                   
                         

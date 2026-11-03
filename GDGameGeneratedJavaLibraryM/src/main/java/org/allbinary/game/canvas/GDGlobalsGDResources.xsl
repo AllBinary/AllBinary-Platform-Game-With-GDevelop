@@ -165,7 +165,7 @@ Created By: Travis Berthelot
                         isThreed = true;
                     }
 
-                    animationInterfaceFactoryInterfaceFactory.init(-1);
+                    this.animationInterfaceFactoryInterfaceFactory.init(-1);
 
                     <xsl:call-template name="scale" >
                         <xsl:with-param name="layoutIndex" >Global</xsl:with-param>
@@ -189,7 +189,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                            <xsl:value-of select="$name" />GDGameLayerFactoryList.add(<xsl:value-of select="name" />GDGameLayerFactory);
+                            this.<xsl:value-of select="$name" />GDGameLayerFactoryList.add(this.<xsl:value-of select="name" />GDGameLayerFactory);
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END

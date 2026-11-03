@@ -85,7 +85,7 @@ public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implement
             this.demoGameMidlet.setGameCanvasRunnableInterface(
                     this.demoGameMidlet.createGDGame<xsl:value-of select="$layoutName" />CanvasRunnableInterface());
 
-            this.demoGameMidlet.getGameCanvasRunnableInterface().setLoadStateHashtable(hashtable);
+            this.demoGameMidlet.getGameCanvasRunnableInterface().setLoadStateHashtable(this.hashtable);
 
             // this.setDisplay((Displayable)
             // this.getGameCanvasRunnableInterface());

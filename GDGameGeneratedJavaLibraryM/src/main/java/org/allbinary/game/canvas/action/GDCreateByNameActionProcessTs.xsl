@@ -29,7 +29,7 @@ Created By: Travis Berthelot
 
         //param1=<xsl:value-of select="$param" />
 
-        <xsl:variable name="actionAsString" >ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
+        <xsl:variable name="actionAsString" >this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /></xsl:variable>
 
                         <!-- Temp solution until I can remove duplicates -->
                         <xsl:variable name="hasObjectInParams" >
@@ -77,8 +77,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
                             
-                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                        final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
+                        final String createString = this.gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                        final int createIndex = this.gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
                         
                     <xsl:call-template name="createByNameGDObject" >
                         <xsl:with-param name="layoutIndex" >
@@ -120,8 +120,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >
                             
-                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                        this.createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
+                        final String createString = this.gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                        this.createIndex = this.gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
                         
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.createIndex, this, this.commonStrings.PROCESS);
                         
@@ -193,8 +193,8 @@ Created By: Travis Berthelot
 
                         <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParam" />
 
-                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                        final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
+                        final String createString = this.gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                        final int createIndex = this.gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
 
                     <xsl:call-template name="createByNameGDObject3" >
                         <xsl:with-param name="layoutIndex" >
@@ -233,8 +233,8 @@ Created By: Travis Berthelot
 
                         <xsl:value-of select="$siblingOrParentOrListOnlyListForTheMainParam" />
         
-                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                        final int createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
+                        final String createString = this.gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                        final int createIndex = this.gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
 
                     <xsl:call-template name="createByNameGDObject3" >
                         <xsl:with-param name="layoutIndex" >
@@ -316,7 +316,7 @@ Created By: Travis Berthelot
                                 <xsl:text>&#10;</xsl:text>
                                 //this.globals.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>
                                 <xsl:text>&#10;</xsl:text>
-                                <xsl:value-of select="text()" />GDGameLayer = <xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(createString).append(CommonSeps.getInstance().UNDERSCORE)
+                                <xsl:value-of select="text()" />GDGameLayer = this.<xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(createString).append(CommonSeps.getInstance().UNDERSCORE)
                                 .appendint(this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]++).toString(), 
                                 gdObject, 
                                 scale, scale,
@@ -376,8 +376,8 @@ Created By: Travis Berthelot
                         </xsl:if>
                         <xsl:if test="not(contains($hasObject, 'found') or contains($hasObjectGroup, 'found'))" >-->
                             
-                        final String createString = gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
-                        this.createIndex = gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
+                        final String createString = this.gdObjectsFactory.get<xsl:value-of select="$name" />Name(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>);
+                        this.createIndex = this.gdObjectsFactory.get<xsl:value-of select="$name" />Index(createString);
                         
                         //this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.createIndex, this, this.commonStrings.PROCESS);
                         
@@ -410,7 +410,7 @@ Created By: Travis Berthelot
 <!--                        </xsl:if>-->
 
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
 
                         return true;

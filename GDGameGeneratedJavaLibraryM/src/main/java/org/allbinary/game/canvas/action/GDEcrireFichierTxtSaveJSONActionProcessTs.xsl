@@ -56,7 +56,7 @@ Created By: Travis Berthelot
                             jsonPersistance.deleteAll(abeClientInformation);
                             jsonPersistance.save(abeClientInformation, jsonAsString2);
 
-                            this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + jsonAsString, this, this.commonStrings.PROCESS);
+                            this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + jsonAsString, this, this.commonStrings.PROCESS);
                             
                             return true;
                         }

@@ -23,7 +23,7 @@ Created By: Travis Berthelot
         <xsl:for-each select="instances" >
             <xsl:variable name="createInstanceIndex" select="number(position() - 1)" />
                     //instances create - START
-        GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$layoutType" /><xsl:value-of select="$createInstanceIndex" />CreateInstance.getInstance().init(imageResources, resources);
+        GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="$layoutType" /><xsl:value-of select="$createInstanceIndex" />CreateInstance.getInstance().init(<xsl:if test="$layoutType = 'External'" >this.</xsl:if>imageResources, <xsl:if test="$layoutType = 'External'" >this.</xsl:if>resources);
                     //instances create - END
         </xsl:for-each>
 
@@ -122,7 +122,7 @@ Created By: Travis Berthelot
                         final int <xsl:value-of select="name" />Y = (int) tempY;
                         </xsl:if>
 
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray == nullUtil.NULL_OBJECT_ARRAY) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray == this.nullUtil.NULL_OBJECT_ARRAY) {
                             <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.ensureCapacity(1);
                         }
 

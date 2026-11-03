@@ -149,7 +149,7 @@ Created By: Travis Berthelot
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
-                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
+                        private final String EMPTY_STRING = this.stringUtil.EMPTY_STRING;
                         private final TouchScreenFactory touchScreenFactory = TouchScreenFactory.getInstance();
                         private final TouchMotionGestureFactory touchMotionGestureFactory = TouchMotionGestureFactory.getInstance();
                         private final RectangleCollisionUtil rectangleCollisionUtil = RectangleCollisionUtil.getInstance();

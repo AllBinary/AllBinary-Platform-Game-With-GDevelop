@@ -101,7 +101,7 @@ Created By: Travis Berthelot
 
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
-                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + this.gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
 
                     <xsl:for-each select=".." >
@@ -209,7 +209,7 @@ Created By: Travis Berthelot
 
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
-                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + this.gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
 
                     <xsl:for-each select=".." >
@@ -318,7 +318,7 @@ Created By: Travis Berthelot
 
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
-                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + this.gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
                     
                     <xsl:for-each select=".." >
@@ -406,7 +406,7 @@ Created By: Travis Berthelot
                     
                     this.iterationTotal++;
                     if(this.iterationTotal % 10000 == 0) {
-                        this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
+                        this.logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="$nodeId" /> + this.gdStrings.LONG_RUNNING_WHILE_LOOP + this.iterationTotal, this, commonStrings.PROCESS);
                     }
                     
                     <xsl:for-each select=".." >

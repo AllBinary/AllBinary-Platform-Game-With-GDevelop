@@ -486,6 +486,9 @@
         <xsl:if test="contains($isGlobal, 'found')" >.</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >.</xsl:if>
     </xsl:template>
 
+    <!-- resources and imageResources are class properties. CreateInstance stylesheets set this to empty because init uses parameters. -->
+    <xsl:variable name="resourcesPrefix" >this.</xsl:variable>
+
     <xsl:template name="globalResource" >
         <xsl:param name="name" />
         <xsl:variable name="isGlobal" >
@@ -495,7 +498,7 @@
             </xsl:for-each>
         </xsl:for-each>
         </xsl:variable>
-        <xsl:if test="contains($isGlobal, 'found')" >globalResources</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >resources</xsl:if>
+        <xsl:if test="contains($isGlobal, 'found')" >globalResources</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" ><xsl:value-of select="$resourcesPrefix" />resources</xsl:if>
     </xsl:template>
 
     <xsl:template name="globalImageResource" >
@@ -507,7 +510,7 @@
             </xsl:for-each>
         </xsl:for-each>
         </xsl:variable>
-        <xsl:if test="contains($isGlobal, 'found')" >globalImageResources</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >imageResources</xsl:if>
+        <xsl:if test="contains($isGlobal, 'found')" >globalImageResources</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" ><xsl:value-of select="$resourcesPrefix" />imageResources</xsl:if>
     </xsl:template>
 
     <xsl:template name="objectFactory" >
@@ -532,7 +535,7 @@
             </xsl:for-each>
         </xsl:for-each>
         </xsl:variable>
-        <xsl:if test="contains($isGlobal, 'found')" >gdGlobalsObjectsFactory</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >gdObjectsFactory</xsl:if>
+        <xsl:if test="contains($isGlobal, 'found')" >gdGlobalsObjectsFactory</xsl:if><xsl:if test="not(contains($isGlobal, 'found'))" >this.gdObjectsFactory</xsl:if>
     </xsl:template>
 
     <xsl:template name="variables" >
@@ -544,7 +547,7 @@
                             </xsl:if>
                             <xsl:if test="type = 'string'" >
                                 <xsl:if test="value = '' or number(value) != value or contains(name, 'String')" >
-                        public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
+                        public String <xsl:value-of select="name" /> = <xsl:if test="value = ''" >this.stringUtil.EMPTY_STRING</xsl:if><xsl:if test="value != ''" >"<xsl:value-of select="value" />"</xsl:if>;
                                 </xsl:if>
                                 <xsl:if test="not(value = '' or number(value) != value or contains(name, 'String'))" >
                         public int <xsl:value-of select="name" /> = <xsl:value-of select="value" />;

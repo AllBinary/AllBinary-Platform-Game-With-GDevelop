@@ -187,7 +187,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
         
         this.abeClientInformation = abeClientInformation;
         
-        musicManager = MusicManagerFactory.createMusicManager(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
+        this.musicManager = MusicManagerFactory.createMusicManager(GD<xsl:value-of select="$layoutIndex" />GameMusicFactory.getInstance().soundList);
 
         this.cleanupGame();
 
@@ -219,11 +219,11 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
                                <xsl:variable name="typeValue" select="type/value" />
                                <xsl:if test="$typeValue = 'SceneBackground'" >
         //SceneBackground - this is probably better handled as gdnode.
-        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+        final BasicColor backgroundBasicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
                                 basicColorUtil.getARGB(255,
                                <xsl:for-each select="parameters" ><xsl:value-of select="translate(translate(text(), '\&quot;', ''), ';', ',')" /></xsl:for-each>));
                                //GD_LAYOUT_COLOR
-        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
+        final BasicColor foregroundBasicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
                                 basicColorUtil.getARGB(255,
                                255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                //GD_LAYOUT_COLOR
@@ -236,12 +236,12 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
         <xsl:if test="not(contains($foundSceneBackground, 'found'))" >
         //Using Layout Color before any - //SceneBackground Action
-        final BasicColor backgroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
-                                basicColorUtil.getARGB(255,
+        final BasicColor backgroundBasicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
+                                this.basicColorUtil.getARGB(255,
                                <xsl:value-of select="r" />, <xsl:value-of select="v" />, <xsl:value-of select="b" />));
                                //GD_LAYOUT_COLOR
-        final BasicColor foregroundBasicColor = smallBasicColorCacheFactory.getAndOrCreate(
-                                basicColorUtil.getARGB(255,
+        final BasicColor foregroundBasicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
+                                this.basicColorUtil.getARGB(255,
                                255-backgroundBasicColor.red, 255-backgroundBasicColor.green, 255-backgroundBasicColor.blue));
                                //GD_LAYOUT_COLOR
         </xsl:if>
@@ -292,13 +292,13 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
             @Override
             public void paint(Graphics graphics)
             {
-                specialAnimation.paintXY(graphics, 0, 0);
+                this.specialAnimation.paintXY(graphics, 0, 0);
             }
 
             @Override
             public void paintThreed(Graphics graphics)
             {
-                specialAnimation.paintThreedXYZ(graphics, 0, 0, 0);
+                this.specialAnimation.paintThreedXYZ(graphics, 0, 0, 0);
             }
 
         }
@@ -713,7 +713,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     protected void processGame() throws Exception
     {
-        if (playerTimeDelayHelper.isTimeTNT())
+        if (this.playerTimeDelayHelper.isTimeTNT())
         {
             if(this.features.isFeature(this.soundGameFeature))
             {
@@ -753,9 +753,9 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     protected void processPlayingGame() throws Exception {
 
-        gdNodeStatsFactory.reset();
+        this.gdNodeStatsFactory.reset();
     
-        musicManager.process();
+        this.musicManager.process();
 
         this.gameInputProcessor.process(this.gameLayerManager, this.specialAnimation);
 
@@ -781,13 +781,13 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
         this.specialAnimation.process();
         
-        gdNodeStatsFactory.log(stringBuilder, this);
+        this.gdNodeStatsFactory.log(this.stringBuilder, this);
         
     }
 
     @Override
     public void nextSong(final Sound nextSongSound, final int leftVolume, final int rightVolume) {
-        musicManager.nextSong(nextSongSound, leftVolume, rightVolume);
+        this.musicManager.nextSong(nextSongSound, leftVolume, rightVolume);
     }
 
     @Override
@@ -795,7 +795,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     {
     	super.endGameThread();
     	
-    	musicManager.stop();
+    	this.musicManager.stop();
     }
 
     public void addCommands()
@@ -907,7 +907,7 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
     public void end() {
         try {
             super.end();
-            musicManager.stop();
+            this.musicManager.stop();
             this.cleanupManager();
             this.specialAnimation.reset();
             //GD<xsl:value-of select="$layoutIndex" />SpecialAnimation.getInstance().clear();

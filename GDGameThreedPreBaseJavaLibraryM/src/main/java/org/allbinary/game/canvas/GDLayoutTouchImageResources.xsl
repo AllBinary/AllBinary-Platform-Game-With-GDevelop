@@ -138,7 +138,7 @@ Created By: Travis Berthelot
 
                             final PointFactory pointFactory = PointFactory.getInstance();
 
-                            final ABHashtable hashTable = imageCache.getHashtableP();
+                            final ABHashtable hashTable = this.imageCache.getHashtableP();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -167,7 +167,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
                         <xsl:for-each select="objects" >
                             <xsl:if test="contains(name, 'btn_')" >
-                                <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
+                                this.<xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>

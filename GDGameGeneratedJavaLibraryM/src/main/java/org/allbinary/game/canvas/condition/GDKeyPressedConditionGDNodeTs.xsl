@@ -42,7 +42,7 @@ Created By: Travis Berthelot
                         @Override
                         public boolean process() throws Exception {
                             super.processStats();
-                            this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                            this.logUtil.putF(this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                             //<xsl:value-of select="parameters[2]" />
                             this.globals.inputProcessorArray[<xsl:call-template name="generateCanvasKeyFromGDNameHack" ><xsl:with-param name="key" select="parameters[2]" /></xsl:call-template>] = new GDRGameInputProcessor() {
                                 
@@ -204,7 +204,7 @@ Created By: Travis Berthelot
 
                                 return this.process();
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
                             return true;
                         }

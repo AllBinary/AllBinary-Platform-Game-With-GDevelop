@@ -52,15 +52,15 @@ Created By: Travis Berthelot
                             
                                 if(jsonObject.has(SECOND_PARAM)) {
                                     this.globals.<xsl:value-of select="$param4" /> = jsonObject.getString(SECOND_PARAM);
-                                    this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.globals.<xsl:value-of select="$param4" />, this, this.commonStrings.PROCESS);
+                                    this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.globals.<xsl:value-of select="$param4" />, this, this.commonStrings.PROCESS);
                                 } else {
-                                    this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "missing", this, this.commonStrings.PROCESS);
+                                    this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "missing", this, this.commonStrings.PROCESS);
                                     //this.globals.<xsl:value-of select="$param4" /> = CommonPhoneStrings.getInstance().ZERO;
                                     throw new RuntimeException();
                                 }
 
                             } else {
-                                this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + stringUtil.NULL_STRING, this, this.commonStrings.PROCESS);
+                                this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + stringUtil.NULL_STRING, this, this.commonStrings.PROCESS);
                             }
 
                             return true;
@@ -84,7 +84,7 @@ Created By: Travis Berthelot
 
                             this.process();
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
                         return true;                   
                     }

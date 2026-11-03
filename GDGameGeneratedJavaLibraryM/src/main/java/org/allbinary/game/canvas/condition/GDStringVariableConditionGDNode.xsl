@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                                     </xsl:call-template>;</xsl:if>
 
                 <xsl:variable name="param3Selected" >
-                    <xsl:if test="contains($param3, $quote)" ><xsl:value-of select="$param3AsFinalString" /></xsl:if>
+                    <xsl:if test="contains($param3, $quote)" >this.<xsl:value-of select="$param3AsFinalString" /></xsl:if>
                     <xsl:if test="not(contains($param3, $quote))" ><xsl:call-template name="addGlobals" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param></xsl:call-template></xsl:if>
                 </xsl:variable>
 
@@ -108,7 +108,7 @@ Created By: Travis Berthelot
 
                                 return this.process();
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
                             return true;                   
                         }

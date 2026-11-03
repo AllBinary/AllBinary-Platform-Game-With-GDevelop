@@ -398,7 +398,7 @@ this.logUtil!.put(commonStrings!.EXCEPTION, this, "mouseReleased", e);
                                     }
                                 
                         else {
-                            this.motionRecognizer!.processMovedMotionEvent(x, y, DEVICE_ID, button);
+                            this.motionRecognizer!.processMovedMotionEvent(x, y, this.DEVICE_ID, button);
     
 
                         }

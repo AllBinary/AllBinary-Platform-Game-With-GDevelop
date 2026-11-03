@@ -135,11 +135,11 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            this.logUtil.putF(this.commonStrings.CONSTRUCTOR, this, this.commonStrings.CONSTRUCTOR);
 
                             final PointFactory pointFactory = PointFactory.getInstance();
 
-                            final ABHashtable hashTable = imageCache.getHashtableP();
+                            final ABHashtable hashTable = this.imageCache.getHashtableP();
 
                     <xsl:call-template name="imageCache" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -168,7 +168,7 @@ Created By: Travis Berthelot
                         </xsl:variable>
                         <xsl:for-each select="objects" >
                             <xsl:if test="contains(name, 'btn_')" >
-                                <xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
+                                this.<xsl:value-of select="$objectGroupName" />ImageArrayList.add(<xsl:value-of select="name" />ImageArray);
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:for-each>
@@ -187,7 +187,7 @@ Created By: Travis Berthelot
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             image = imageArray[index];
                             if (image.getWidth() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> image.getHeight() <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> image.getWidth() % image.getHeight() != 0) {
-                                logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, commonStrings.PROCESS, new Exception());
+                                this.logUtil.put(new StringMaker().appendint(index).append(name).appendint(image.getWidth()).append(commonSeps.COLON).appendint(image.getHeight()).toString(), this, this.commonStrings.PROCESS, new Exception());
                             }
                         }
                     }

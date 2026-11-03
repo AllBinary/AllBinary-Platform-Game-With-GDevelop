@@ -80,7 +80,7 @@ Created By: Travis Berthelot
                         <xsl:if test="$param2 = '+'" ><xsl:value-of select="$param1" /> = new StringMaker().append(<xsl:value-of select="$param1" />).append(<xsl:value-of select="$param3" />).toString();</xsl:if>
 
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
                         return true;                   
                         

@@ -82,7 +82,7 @@ Created By: Travis Berthelot
                             super.processMotionStats(motionGestureEvent);
                             
                             final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            if (motionGestureInput == touchMotionGestureFactory.PRESSED || motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            if (motionGestureInput == this.touchMotionGestureFactory.PRESSED || motionGestureInput == this.touchMotionGestureFactory.RELEASED) {
                                 return this.process();
                             }
                             return false;

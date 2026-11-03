@@ -45,6 +45,9 @@ Created By: Travis Berthelot
 
     <xsl:import href="../GDGameGeneratedJavaLibraryM/src/main/java/org/allbinary/game/canvas/event/GDExternalLinkEventGDNode.xsl" />
 
+    <!-- init receives imageResources and resources as parameters -->
+    <xsl:variable name="resourcesPrefix" ></xsl:variable>
+
     <xsl:output method="html" indent="yes" />
 
     <xsl:template match="/game">

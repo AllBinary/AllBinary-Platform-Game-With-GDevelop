@@ -198,11 +198,11 @@ Created By: Travis Berthelot
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
                     <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     <xsl:if test="string-length($image) = 0" >
                     //Named animation without Sprites/Images.
-                    gdResources.BLANK,
+                    this.gdResources.BLANK,
                     </xsl:if>
                     <!--
                     </xsl:for-each>
@@ -219,7 +219,7 @@ Created By: Travis Berthelot
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
                     <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     </xsl:for-each>
                     
@@ -230,7 +230,7 @@ Created By: Travis Berthelot
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
                     <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     <xsl:if test="not(contains($hasMirrorFillBarBehavior, 'found'))" >
                     null,
@@ -242,7 +242,7 @@ Created By: Travis Berthelot
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
                     <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                    gdResources.MIRROR_<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.MIRROR_<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     </xsl:if>
                     </xsl:for-each>
@@ -254,7 +254,7 @@ Created By: Travis Berthelot
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
                     <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     </xsl:for-each>
                     
@@ -265,7 +265,7 @@ Created By: Travis Berthelot
 <!--                    //ends-with=<xsl:value-of select="$ends-with" />-->
                     <xsl:variable name="image" ><xsl:if test="contains($ends-with, 'found')" ><xsl:call-template name="string-replace-all" ><xsl:with-param name="text" ><xsl:value-of select="$image2" /></xsl:with-param><xsl:with-param name="find" >_0</xsl:with-param><xsl:with-param name="replacementText" >_1</xsl:with-param></xsl:call-template></xsl:if><xsl:if test="not(contains($ends-with, 'found'))" ><xsl:value-of select="$image2" /></xsl:if></xsl:variable>
                     <xsl:if test="string-length($image) > 0" >
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
                     </xsl:for-each>
                                         
@@ -280,7 +280,7 @@ Created By: Travis Berthelot
                     //TileMap::TileMap - content
                     <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
                     <xsl:variable name="image" select="substring-before($imageWithExtension, '.')" />
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                 </xsl:if>
                 };
                 </xsl:if>
@@ -289,7 +289,7 @@ Created By: Travis Berthelot
                 <xsl:for-each select="texture" >
                     //TiledSpriteObject::TiledSprite - texture
                     <xsl:variable name="image" select="substring-before(text(), '.')" />
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>,
                 </xsl:for-each>
                 };
                 </xsl:if>
@@ -495,7 +495,7 @@ Created By: Travis Berthelot
                 </xsl:if>
 
                 //this.validateSprites(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ResourceArray, <xsl:value-of select="name" />ImageArray);
-                hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
+                hashTable.put(this.animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, <xsl:value-of select="name" />ImageArray[0].getWidth(), <xsl:value-of select="name" />ImageArray[0].getHeight());
 
             </xsl:if>
@@ -513,7 +513,7 @@ Created By: Travis Berthelot
                 //TileMap::CollisionMask
                 this.<xsl:value-of select="$name" />ImageArray = new Image[] {
                 };
-                hashTable.put(animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
+                hashTable.put(this.animationInterfaceFactoryInterfaceFactory.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME, <xsl:value-of select="name" />ImageArray);
                 this.<xsl:value-of select="$name" />Rectangle = new Rectangle(pointFactory.ZERO_ZERO, 0, 0);
             </xsl:if>
             
@@ -530,16 +530,16 @@ Created By: Travis Berthelot
                     //TileMap::TileMap - content
                     <xsl:variable name="jsonWithExtension" select="content/tilemapJsonFile" />
                     <xsl:variable name="json" select="substring-before($jsonWithExtension, '.')" />
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$json" /></xsl:with-param></xsl:call-template>,
                     <xsl:variable name="tilesetJsonFileWithExtension" select="content/tilesetJsonFile" />
                     <xsl:variable name="tilesetJsonFile" select="substring-before($tilesetJsonFileWithExtension, '.')" />
                     <xsl:if test="string-length(content/tilesetJsonFile) > 1" >
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tilesetJsonFile" /></xsl:with-param></xsl:call-template>,
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tilesetJsonFile" /></xsl:with-param></xsl:call-template>,
                     </xsl:if>
 
                     <xsl:for-each select="content/tilesetJsonFiles" >
                         <xsl:variable name="tileSetJSON" select="substring-before(text(), '.')" />
-                    gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,                        
+                    this.gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$tileSetJSON" /></xsl:with-param></xsl:call-template>,                        
                     </xsl:for-each>
                 </xsl:if>
                 };

@@ -83,13 +83,13 @@ export class GameAdStateFactory
                         if(softwareInformation == GDGameSoftwareInfo.getInstance())
                         
                                     {
-                                    this.gameAdState= gameAdStateArray[0]!;
+                                    this.gameAdState= this.gameAdStateArray[0]!;
     
 
 
 
                         //if statement needs to be on the same line and ternary does not work the same way.
-                        return gameAdStateArray[0]!;
+                        return this.gameAdStateArray[0]!;
     
 
                                     }

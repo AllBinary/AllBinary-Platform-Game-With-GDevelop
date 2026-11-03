@@ -147,7 +147,7 @@ Created By: Travis Berthelot
                         protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
-                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
+                        private final String EMPTY_STRING = this.stringUtil.EMPTY_STRING;
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
@@ -419,8 +419,8 @@ Created By: Travis Berthelot
                     };
                             
                     //public GDNode currentButtonGDNodePressed = null;
-                    MotionGestureInput lastMotionGestureInput = touchMotionGestureFactory.NO_MOTION;
-                    MotionGestureInput lastScrollingMotionGestureInput = touchMotionGestureFactory.NO_MOTION;
+                    MotionGestureInput lastMotionGestureInput = this.touchMotionGestureFactory.NO_MOTION;
+                    MotionGestureInput lastScrollingMotionGestureInput = this.touchMotionGestureFactory.NO_MOTION;
                     </xsl:if>
 
                     //eventsClassPropertyActions - START
@@ -524,7 +524,7 @@ Created By: Travis Berthelot
 
                         };
                         
-                        layerManagerEventListener = new LayoutSceneLayerManagerEventListener(this);
+                        this.layerManagerEventListener = new LayoutSceneLayerManagerEventListener(this);
                         layerManagerEventHandler.addListener(this.layerManagerEventListener);
                         
                     }

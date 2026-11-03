@@ -144,7 +144,7 @@ Created By: Travis Berthelot
                                 <xsl:text>&#10;</xsl:text>
                                 <xsl:value-of select="text()" />GDGameLayer = <xsl:call-template name="globalResource" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerFactory.create(<xsl:value-of select="$layoutIndex" />, stringBuilder.append(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>_OBJECT_NAME).append(CommonSeps.getInstance().UNDERSCORE)
                                 .appendint(this.gameGlobals.creationIndex[<xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id]) + count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />]).toString(), gdObject, 
-                                scale, scale,
+                                this.scale, this.scale,
                                 GDConditionWithGroupActions.NULL_GD_CONDITION_WITH_GROUP_ACTIONS); //<xsl:call-template name="globals" >
                                     <xsl:with-param name="name" >
                                         <xsl:value-of select="text()" />
@@ -378,7 +378,7 @@ Created By: Travis Berthelot
                             <xsl:if test="position() != last()" >
                                 <xsl:variable name="param" >
                                 <xsl:if test="string-length(text()) = 0" >
-                                    stringUtil.EMPTY_STRING
+                                    this.stringUtil.EMPTY_STRING
                                 </xsl:if>
                                 <xsl:if test="string-length(text()) > 0" >
                                     <xsl:call-template name="string-replace-all" >
@@ -442,7 +442,7 @@ Created By: Travis Berthelot
                     <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
               
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
 
                         return true;

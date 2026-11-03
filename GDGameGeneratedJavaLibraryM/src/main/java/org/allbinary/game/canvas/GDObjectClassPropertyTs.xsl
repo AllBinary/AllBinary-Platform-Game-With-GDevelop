@@ -222,7 +222,7 @@ Created By: Travis Berthelot
         //objects - all - //layerManagerEventListenerList - START
         <xsl:for-each select="objects" >
             
-            public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(nullUtil.NULL_OBJECT_ARRAY);
+            public final BasicArrayList <xsl:value-of select="name" />GDGameLayerDestroyedList = new BasicArrayList(this.nullUtil.NULL_OBJECT_ARRAY);
 
         </xsl:for-each>
         //objects - all - //layerManagerEventListenerList - END

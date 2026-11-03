@@ -136,7 +136,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                        <xsl:value-of select="$name" />GDObjectFactoryList.add(<xsl:value-of select="name" />GDObjectFactory);
+                        this.<xsl:value-of select="$name" />GDObjectFactoryList.add(this.<xsl:value-of select="name" />GDObjectFactory);
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END

@@ -196,7 +196,7 @@ Created By: Travis Berthelot
                             <xsl:text>&#10;</xsl:text>
                             
                         if(animationIndex <xsl:text disable-output-escaping="yes" >&gt;=</xsl:text> <xsl:value-of select="$name" />GDGameLayer.getIndexedAnimationInterfaceArray().length) {
-                            this.logUtil.put(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, this.commonStrings.PROCESS, new Exception());
+                            this.logUtil.put(new StringMaker().append(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(<xsl:value-of select="$name" />GDGameLayer.toString()).append(" invalid animation index: ").appendint(animationIndex).toString(), this, this.commonStrings.PROCESS, new Exception());
                         }
                             
 <xsl:text>                        </xsl:text><xsl:value-of select="$name" />GDGameLayer.gdObject.animation = animationIndex;
@@ -222,7 +222,7 @@ Created By: Travis Berthelot
                         <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
 
                         return true;

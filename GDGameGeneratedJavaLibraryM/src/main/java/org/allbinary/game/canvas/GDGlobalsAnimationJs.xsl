@@ -132,7 +132,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="objectName" select="name" />
 
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != nullUtil.NULL_OBJECT_ARRAY) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != this.nullUtil.NULL_OBJECT_ARRAY) {
                         <xsl:if test="behaviors" >
                         //Behavior - animation
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>

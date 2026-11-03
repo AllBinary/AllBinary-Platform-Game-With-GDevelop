@@ -63,7 +63,7 @@ Created By: Travis Berthelot
                                                 try {
                                                     textToSpeech.process(speech);
                                                 } catch(Exception e) {
-                                                    logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
+                                                    logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, commonStrings.PROCESS, e);
                                                 }
                                             }
                                         };
@@ -82,7 +82,7 @@ Created By: Travis Berthelot
                                 public boolean process() throws Exception {
 
                                     //I don't have plans to implement this event type anytime soon for especially non HTML5 builds.
-                                    this.logUtil.put(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.commonStrings.NOT_IMPLEMENTED, this, this.commonStrings.PROCESS, new Exception());
+                                    this.logUtil.put(this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.commonStrings.NOT_IMPLEMENTED, this, this.commonStrings.PROCESS, new Exception());
                                 </xsl:if>
 
                                     /*<xsl:value-of select="inlineCode" />*/

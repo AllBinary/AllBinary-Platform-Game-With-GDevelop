@@ -156,8 +156,8 @@ Created By: Travis Berthelot
         <xsl:param name="layoutIndex" />
 
                             GD<xsl:value-of select="$layoutIndex" />Game<xsl:value-of select="position() - 1" />ExternalLinkLayoutGDNode.getInstance().init(imageResources, resources);
-                            layoutNameList.add("<xsl:value-of select="name" />");
-                            layoutGDNodeList.add(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDNode);
+                            this.layoutNameList.add("<xsl:value-of select="name" />");
+                            this.layoutGDNodeList.add(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDNode);
     </xsl:template>
 
     <xsl:template name="externalLinkLayoutGDNode" >
@@ -178,7 +178,7 @@ Created By: Travis Berthelot
                                 @Override
                                 public boolean process() throws Exception {
                             
-                                    this.logUtil.putF(EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, this.commonStrings.PROCESS);
+                                    this.logUtil.putF(this.EVENT_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "<xsl:value-of select="name" />", this, this.commonStrings.PROCESS);
                                     
                                     //Create the Objects in the layout=<xsl:value-of select="name" />
                                     <xsl:call-template name="createInstancesCalls" >

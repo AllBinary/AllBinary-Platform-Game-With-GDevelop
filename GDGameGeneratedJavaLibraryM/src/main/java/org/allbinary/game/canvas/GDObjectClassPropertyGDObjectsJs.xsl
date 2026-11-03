@@ -412,7 +412,7 @@ Created By: Travis Berthelot
                     }
 
                     public String getAnimation(final String animationName) {
-                        final int size = ANIMATION_NAMES.length;
+                        final int size = this.ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
                                 //this.logUtil.put(animationName, this, "getAnimation");
@@ -432,7 +432,7 @@ Created By: Travis Berthelot
                     }
                     
                     public boolean setAnimation(final String animationName) {
-                        final int size = ANIMATION_NAMES.length;
+                        final int size = this.ANIMATION_NAMES.length;
                         for(int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                             if(this.ANIMATION_NAMES[index] == animationName) {
                                 //this.logUtil.put(animationName, this, "setAnimation");

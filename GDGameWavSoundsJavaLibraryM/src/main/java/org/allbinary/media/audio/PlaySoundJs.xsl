@@ -61,7 +61,7 @@ Created By: Travis Berthelot
             </xsl:variable>
 
             <xsl:variable name="thisNodeArray" >
-                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
+                <xsl:for-each select="conditions" ><xsl:if test="type/value = 'Timer'" >this.globals.nodeArray[<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]</xsl:if></xsl:for-each>
             </xsl:variable>
 
 <!--            <xsl:variable name="hackProcessing" >

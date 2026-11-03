@@ -111,7 +111,7 @@ this.initInterface!.updateRate= this.initInterface!.waitFrameRate;
                         if(!this.isDeviceFactoryLoaded())
                         
                                     {
-                                    this.logUtil!.putF(WAITING_DEVICEFACTORY, this, this.commonStrings!.PROCESS);
+                                    this.logUtil!.putF(this.WAITING_DEVICEFACTORY, this, this.commonStrings!.PROCESS);
     
 
 
@@ -126,7 +126,7 @@ this.initInterface!.updateRate= this.initInterface!.waitFrameRate;
                         if(!this.isMIDletBridgeLoaded())
                         
                                     {
-                                    this.logUtil!.putF(WAITING_BRIDGE, this, this.commonStrings!.PROCESS);
+                                    this.logUtil!.putF(this.WAITING_BRIDGE, this, this.commonStrings!.PROCESS);
     
 
 
@@ -141,7 +141,7 @@ this.initInterface!.updateRate= this.initInterface!.waitFrameRate;
                         if(!this.isPlaynCanvasDisplayGraphicsLoaded())
                         
                                     {
-                                    this.logUtil!.putF(WAITING_PLAYN_CANVAS_GRAPHICS, this, this.commonStrings!.PROCESS);
+                                    this.logUtil!.putF(this.WAITING_PLAYN_CANVAS_GRAPHICS, this, this.commonStrings!.PROCESS);
     
 
 
@@ -156,7 +156,7 @@ this.initInterface!.updateRate= this.initInterface!.waitFrameRate;
                         if(!this.isAllBinaryPlayNGameRunnableReady())
                         
                                     {
-                                    this.logUtil!.putF(WAITING, this, this.commonStrings!.PROCESS);
+                                    this.logUtil!.putF(this.WAITING, this, this.commonStrings!.PROCESS);
     
 
 
@@ -171,7 +171,7 @@ this.initInterface!.updateRate= this.initInterface!.waitFrameRate;
                         if(!this.isOpenGLESPackageLoaded())
                         
                                     {
-                                    this.logUtil!.putF(WAITING2, this, this.commonStrings!.PROCESS);
+                                    this.logUtil!.putF(this.WAITING2, this, this.commonStrings!.PROCESS);
     
 
 

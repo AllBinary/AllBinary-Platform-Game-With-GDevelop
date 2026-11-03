@@ -304,7 +304,7 @@ public class GDGameMIDlet extends
     @Override
     protected void setDisplay(final Displayable newDisplay)
     {
-        gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis();
+        this.gameGlobalsFactory.newDisplaybleTime = System.currentTimeMillis();
         //this.logUtil.putF("newDisplaybleTime: " + gameGlobalsFactory.newDisplaybleTime, this, "setDisplay");
         super.setDisplay(newDisplay);
     }
@@ -315,7 +315,7 @@ public class GDGameMIDlet extends
     
         //this.logUtil.putF(NEW_CANVAS, this, "startGameCanvasRunnableInterface");
 
-        gameGlobalsFactory.newCanvas = true;
+        this.gameGlobalsFactory.newCanvas = true;
         super.startGameCanvasRunnableInterface();
     }
 

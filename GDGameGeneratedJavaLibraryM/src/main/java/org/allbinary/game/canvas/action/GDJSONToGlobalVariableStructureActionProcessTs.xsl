@@ -47,9 +47,9 @@ Created By: Travis Berthelot
                             //this.gameGlobals.<xsl:value-of select="$param2" /> = <xsl:value-of select="$start" />jsonObject.getString("<xsl:value-of select="$param2" />")<xsl:value-of select="$end" />;
                             if(this.globals.<xsl:value-of select="$firstParametersAsString" /> != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> this.globals.<xsl:value-of select="$firstParametersAsString" />.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                 this.gameGlobals.<xsl:value-of select="$param2" /> = <xsl:value-of select="$start" />this.globals.<xsl:value-of select="$firstParametersAsString" /><xsl:value-of select="$end" />;
-                                this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.gameGlobals.<xsl:value-of select="$param2" />, this, this.commonStrings.PROCESS);
+                                this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + this.gameGlobals.<xsl:value-of select="$param2" />, this, this.commonStrings.PROCESS);
                             } else {
-                                this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "null or empty", this, this.commonStrings.PROCESS);
+                                this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + "null or empty", this, this.commonStrings.PROCESS);
                             }
 
                             return true;
@@ -73,7 +73,7 @@ Created By: Travis Berthelot
 
                             return this.process();
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
                         return true;                   
                     }

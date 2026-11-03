@@ -272,12 +272,12 @@ public class GDCustomCollidableBehavior extends CollidableBaseBehavior
 
         int size = ownerLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            stringBuilder.append(stringUtil.toString(ownerLayer.getGroupInterface()[index]));
+            stringBuilder.append(this.stringUtil.toString(ownerLayer.getGroupInterface()[index]));
         }
         stringBuilder.append(" != ");
         size = collisionLayer.getGroupInterface().length;
         for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
-            stringBuilder.append(stringUtil.toString(collisionLayer.getGroupInterface()[index]));
+            stringBuilder.append(this.stringUtil.toString(collisionLayer.getGroupInterface()[index]));
         }
         return stringBuilder.toString();
     }

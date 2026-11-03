@@ -73,7 +73,7 @@ public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implement
     {
         try
         {
-            logUtil.putF(commonStrings.START_RUNNABLE, this, commonStrings.RUN);
+            this.logUtil.putF(this.commonStrings.START_RUNNABLE, this, this.commonStrings.RUN);
 
             this.demoGameMidlet.commandAction(
                     MyCommandsFactory.getInstance().SET_DISPLAYABLE,
@@ -88,7 +88,7 @@ public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implement
             this.demoGameMidlet.setGameCanvasRunnableInterface(
                     this.demoGameMidlet.createGDGame<xsl:value-of select="$layoutName" />CanvasRunnableInterface());
 
-            this.demoGameMidlet.getGameCanvasRunnableInterface().setLoadStateHashtable(hashtable);
+            this.demoGameMidlet.getGameCanvasRunnableInterface().setLoadStateHashtable(this.hashtable);
 
             // this.setDisplay((Displayable)
             // this.getGameCanvasRunnableInterface());
@@ -98,11 +98,11 @@ public class GDGame<xsl:value-of select="$layoutName" />CanvasRunnable implement
             DemoGameMidletEventHandler.getInstance().fireEvent(
                     this.startGameMidletEvent);
             
-            logUtil.putF(commonStrings.END_RUNNABLE, this, commonStrings.RUN);
+            this.logUtil.putF(this.commonStrings.END_RUNNABLE, this, this.commonStrings.RUN);
         }
         catch (Exception e)
         {
-            logUtil.put(commonStrings.EXCEPTION, this, commonStrings.RUN, e);
+            this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.RUN, e);
         }
     }
 }

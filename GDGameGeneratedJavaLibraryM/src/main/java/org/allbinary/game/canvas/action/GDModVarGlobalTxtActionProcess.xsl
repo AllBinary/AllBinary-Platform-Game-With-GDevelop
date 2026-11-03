@@ -59,7 +59,7 @@ Created By: Travis Berthelot
                                     </xsl:call-template>;</xsl:if>
 
                 <xsl:variable name="param3Selected" >
-                    <xsl:if test="contains($param3, $quote)" ><xsl:value-of select="$param3AsFinalString" /></xsl:if>
+                    <xsl:if test="contains($param3, $quote)" >this.<xsl:value-of select="$param3AsFinalString" /></xsl:if>
                     <xsl:if test="not(contains($param3, $quote))" ><xsl:call-template name="addGlobals" ><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="text" ><xsl:value-of select="$param3" /></xsl:with-param></xsl:call-template></xsl:if>
                 </xsl:variable>
                     
@@ -148,7 +148,7 @@ Created By: Travis Berthelot
                             <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
               
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
 
                         return true;

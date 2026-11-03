@@ -94,7 +94,7 @@ Created By: Travis Berthelot
 <xsl:text>                        </xsl:text>
                         <xsl:text>&#10;</xsl:text>
                                                   
-<xsl:text>                        </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >.gdObject.basicColor = smallBasicColorCacheFactory.getAndOrCreate(
+<xsl:text>                        </xsl:text><xsl:value-of select="$paramOneNameObjectsGroups" />GDGameLayer<xsl:for-each select="parameters" ><xsl:if test="position() = 1" >.gdObject.basicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
                         </xsl:if>
                         <xsl:if test="position() != 1" >basicColorUtil.getARGB(255, 
                             <xsl:call-template name="string-replace-all" >
@@ -169,7 +169,7 @@ Created By: Travis Berthelot
 
                         //this.logUtil.putF(ACTION_AS_STRING_AT_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + index, this, this.commonStrings.PROCESS);
                     <xsl:for-each select="parameters" >
-                        <xsl:if test="position() = 1" >(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject.basicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                        <xsl:if test="position() = 1" >(((GDGameLayer) <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="text()" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="text()" />GDGameLayerList.get(index))).gdObject.basicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
                         </xsl:if>
                         <xsl:if test="position() != 1" >basicColorUtil.getARGB(255, 
                             <xsl:call-template name="string-replace-all" >
@@ -207,7 +207,7 @@ Created By: Travis Berthelot
                         
                     <xsl:for-each select="parameters" >
                         <xsl:if test="position() = 1" >
-                        <xsl:value-of select="text()" />GDGameLayer.gdObject.basicColor = smallBasicColorCacheFactory.getAndOrCreate(
+                        <xsl:value-of select="text()" />GDGameLayer.gdObject.basicColor = this.smallBasicColorCacheFactory.getAndOrCreate(
                         </xsl:if>
                         <xsl:if test="position() != 1" >basicColorUtil.getARGB(255, 
                             <xsl:call-template name="string-replace-all" >

@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final AllBinaryGameCanvas abCanvas = (AllBinaryGameCanvas) abToGBUtil.abCanvas;
                                 
-                                this.logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(name).toString(), this, this.commonStrings.PROCESS);
+                                this.logUtil.putF(new StringMaker().append(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(name).toString(), this, this.commonStrings.PROCESS);
                                 
                                 class SaveHighScoreRunnable implements Runnable {
 
@@ -76,7 +76,7 @@ Created By: Travis Berthelot
                                 final GameInfo gameInfo = abCanvas.getLayerManager().getGameInfo();
                                 if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     final long score = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                                    this.logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching leaderboard(s): ").appendlong(score).toString(), this, this.commonStrings.RUN);
+                                    this.logUtil.putF(new StringMaker().append(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching leaderboard(s): ").appendlong(score).toString(), this, this.commonStrings.RUN);
                                     
                                     HighScoreNamePersistanceSingleton.getInstance().save(abeClientInformation, gameInfo, name);
                                     
@@ -95,7 +95,7 @@ Created By: Travis Berthelot
                                             //this.logUtil.putF("saved highscores", this, this.commonStrings.PROCESS);
                                             this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
-                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }
                                         }
                                     };
@@ -105,7 +105,7 @@ Created By: Travis Berthelot
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);
                                     
                                 } else {
-                                    this.logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Fetching leaderboard(s): ").appendlong(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>).toString(), this, this.commonStrings.RUN);
+                                    this.logUtil.putF(new StringMaker().append(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Fetching leaderboard(s): ").appendlong(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>).toString(), this, this.commonStrings.RUN);
                                     
                                     final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
                                     
@@ -119,7 +119,7 @@ Created By: Travis Berthelot
                                                 //this.logUtil.putF("set highscores", this, this.commonStrings.PROCESS);
                                                 this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
-                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }
                                         }
                                     };
@@ -140,7 +140,7 @@ Created By: Travis Berthelot
                                 <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
                             
                             return true;
@@ -197,7 +197,7 @@ Created By: Travis Berthelot
                                 final String name = null;
                                 </xsl:if>
                                                                 
-                                this.logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(name).toString(), this, this.commonStrings.PROCESS);
+                                this.logUtil.putF(new StringMaker().append(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(name).toString(), this, this.commonStrings.PROCESS);
                                                                 
                                 class SaveHighScoreRunnable implements Runnable {
 
@@ -208,7 +208,7 @@ Created By: Travis Berthelot
                                 
                                 if(name != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> name.length() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
                                     final long score = <xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>;
-                                    this.logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching leaderboard(s): ").appendlong(score).toString(), this, this.commonStrings.RUN);
+                                    this.logUtil.putF(new StringMaker().append(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Submitting and Fetching leaderboard(s): ").appendlong(score).toString(), this, this.commonStrings.RUN);
 
                                     HighScoreNamePersistanceSingleton.getInstance().save(abeClientInformation, gameInfo, name);
                                     
@@ -227,7 +227,7 @@ Created By: Travis Berthelot
                                             //this.logUtil.putF("saved highscores", this, this.commonStrings.PROCESS);
                                             this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
-                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }
                                         }
                                     };
@@ -237,7 +237,7 @@ Created By: Travis Berthelot
                                     basicHighScoresFactory.fetchHighScores(gameInfo, highScoresResultsListener);
 
                                 } else {
-                                    this.logUtil.putF(new StringMaker().append(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Fetching leaderboard(s): ").appendlong(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>).toString(), this, this.commonStrings.RUN);
+                                    this.logUtil.putF(new StringMaker().append(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />).append(" Fetching leaderboard(s): ").appendlong(<xsl:for-each select="parameters" ><xsl:if test="position() = 3" ><xsl:value-of select="text()" /></xsl:if></xsl:for-each>).toString(), this, this.commonStrings.RUN);
                                     
                                     final BasicHighScoresFactory basicHighScoresFactory = new BasicHighScoresFactory(abeClientInformation, GDGameSoftwareInfo.getInstance());
                                     
@@ -251,7 +251,7 @@ Created By: Travis Berthelot
                                                 //this.logUtil.putF("set highscores", this, this.commonStrings.PROCESS);
                                                 this.globals.highscoreSubmissionComplete = true;
                                             } catch(Exception e) {
-                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                                             }
                                         }
                                     };
@@ -274,7 +274,7 @@ Created By: Travis Berthelot
                                 <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param></xsl:call-template>
 
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
 
                             return true;

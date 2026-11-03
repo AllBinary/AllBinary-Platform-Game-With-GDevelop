@@ -85,10 +85,10 @@ Created By: Travis Berthelot
                 <xsl:variable name="stringValue" select="string" />
                 <xsl:variable name="name" select="name" />
                 //Animation Total: <xsl:value-of select="count(animations)" />
-                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) ((AnimationInterfaceFactoryInterfaceComposite) animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME)).getAnimationInterfaceFactoryInterfaceArray();
-                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = (BasicAnimationInterfaceFactoryInterface[]) ((BaseAnimationInterfaceFactoryInterfaceComposite) animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME)).getBasicAnimationInterfaceFactoryInterfaceArray();
-                this.<xsl:value-of select="name" />LayerInfo = animationInterfaceFactoryInterfaceFactory.getRectangle(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME);
-                this.<xsl:value-of select="name" />RectangleArrayOfArrays = animationInterfaceFactoryInterfaceFactory.getRectangleArrayOfArrays(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME);
+                this.<xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray = (AnimationInterfaceFactoryInterface[]) ((AnimationInterfaceFactoryInterfaceComposite) this.animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(this.specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME)).getAnimationInterfaceFactoryInterfaceArray();
+                this.<xsl:value-of select="name" />ProceduralAnimationInterfaceFactoryInterfaceArray = (BasicAnimationInterfaceFactoryInterface[]) ((BaseAnimationInterfaceFactoryInterfaceComposite) this.animationInterfaceFactoryInterfaceFactory.getBasicAnimationInterfaceFactoryInstance(this.specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_PROCEDURAL_ANIMATION_NAME)).getBasicAnimationInterfaceFactoryInterfaceArray();
+                this.<xsl:value-of select="name" />LayerInfo = this.animationInterfaceFactoryInterfaceFactory.getRectangle(this.specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_RECTANGLE_NAME);
+                this.<xsl:value-of select="name" />RectangleArrayOfArrays = this.animationInterfaceFactoryInterfaceFactory.getRectangleArrayOfArrays(this.specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_ANIMATION_NAME);
 
                                 <xsl:variable name="layerName" ><xsl:value-of select="name" /></xsl:variable>
 
@@ -141,7 +141,7 @@ Created By: Travis Berthelot
                 <xsl:if test="type = 'TextObject::Text'" >
                     
                 colorAsInt = basicColorUtil.getARGB(255, <xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each>
-                basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
+                basicColor = this.smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
 
                 //TextObject::Text - set the layer size from the initial text
                 final CustomTextAnimationFactory <xsl:value-of select="name" />CustomTextAnimationFactory = (CustomTextAnimationFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];
@@ -153,7 +153,7 @@ Created By: Travis Berthelot
                 <xsl:if test="type = 'PanelSpriteSlider::PanelSpriteSlider'" >
 
                 colorAsInt = basicColorUtil.getARGB(255, <xsl:for-each select="childrenContent" ><xsl:for-each select="Label" ><xsl:for-each select="color" ><xsl:value-of select="r" />, <xsl:value-of select="g" />, <xsl:value-of select="b" />);</xsl:for-each></xsl:for-each></xsl:for-each>
-                basicColor = smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
+                basicColor = this.smallBasicColorCacheFactory.getAndOrCreate(colorAsInt);
 
                 //PanelSpriteSlider::PanelSpriteSlider - set the layer size from the initial text
                 final SliderAnimationInterfaceFactory <xsl:value-of select="name" />SliderAnimationInterfaceFactory = (SliderAnimationInterfaceFactory) <xsl:value-of select="name" />AnimationInterfaceFactoryInterfaceArray[0];

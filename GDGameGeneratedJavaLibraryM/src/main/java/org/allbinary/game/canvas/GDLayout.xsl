@@ -201,11 +201,11 @@ Created By: Travis Berthelot
                             </xsl:with-param>
                         </xsl:call-template>
 
-                        gdNodeStatsFactory.reset();
+                        this.gdNodeStatsFactory.reset();
 
-                        globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstanceOrCreate();
+                        this.globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstanceOrCreate();
                         GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.getInstanceOrCreate();
-                        builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder();
+                        this.builder = new GD<xsl:value-of select="$layoutIndex" />SpecialAnimationBuilder();
                     
 <!--                        try {
 
@@ -216,7 +216,7 @@ Created By: Travis Berthelot
                         //allBinaryGameLayerManager.log();
                         //groupLayerManagerListener.log();
                         
-                        gdNodeStatsFactory.log(stringBuilder, this);
+                        this.gdNodeStatsFactory.log(this.stringBuilder, this);
                         
                         this.logUtil.putF(this.commonStrings.END, this, this.commonStrings.CONSTRUCTOR);
                     }
@@ -241,10 +241,10 @@ Created By: Travis Berthelot
                             motionGestureEvent = (MotionGestureEvent) motionEventList.get(index);
                             motionGestureInput = motionGestureEvent.getMotionGesture();
 
-                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                            if (motionGestureInput == this.touchMotionGestureFactory.PRESSED) {
                                 this.globals.lastMotionGestureInput = motionGestureInput;
                                 pressedAlready = true;
-                            } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            } else if(motionGestureInput == this.touchMotionGestureFactory.RELEASED) {
                             
                         <xsl:for-each select="objects" >
                             <xsl:if test="type = 'SpriteMultitouchJoystick::SpriteMultitouchJoystick'" >
@@ -273,7 +273,7 @@ Created By: Travis Berthelot
                                 //SpriteMultitouchJoystick::SpriteMultitouchJoystick
                                 gameLayer = (GDGameLayer) this.globals.<xsl:value-of select="name" />GDGameLayerList.get(index2);
                                 point = motionGestureEvent.getCurrentPoint();
-                                if (rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY())) {
+                                if (this.rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY())) {
                                     final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /><xsl:text> </xsl:text><xsl:value-of select="name" /> = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) gameLayer.gdObject;
 
                                     <xsl:value-of select="name" />.setId(motionGestureEvent.getId());
@@ -313,10 +313,10 @@ Created By: Travis Berthelot
                             motionGestureEvent = (MotionGestureEvent) scrollingMotionEventList.get(index);
                             motionGestureInput = motionGestureEvent.getMotionGesture();
 
-                            if (motionGestureInput == touchMotionGestureFactory.PRESSED) {
+                            if (motionGestureInput == this.touchMotionGestureFactory.PRESSED) {
                                 this.globals.lastMotionGestureInput = motionGestureInput;
                                 pressedAlready = true;
-                            } else if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            } else if(motionGestureInput == this.touchMotionGestureFactory.RELEASED) {
                             
                                 if(pressedAlready) {
                                     motionEventSize = index;
@@ -372,9 +372,9 @@ Created By: Travis Berthelot
 
                         this.processMotionEvents();
 
-                        gdNodes.process();
+                        this.gdNodes.process();
 
-                        gdGlobalsSpecialAnimation.process(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
+                        this.gdGlobalsSpecialAnimation.process(this.gdUtil.globalsGameTickTimeDelayHelper.timeDelta);
 
                     //eventsProcess - START
                     <xsl:call-template name="eventsProcess" >
@@ -389,7 +389,7 @@ Created By: Travis Berthelot
                         <xsl:variable name="typeValue" select="type" />
                         <xsl:variable name="objectName" select="name" />
 
-                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != nullUtil.NULL_OBJECT_ARRAY) {
+                        if(<xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />GDGameLayerList.objectArray != this.nullUtil.NULL_OBJECT_ARRAY) {
                         <xsl:if test="behaviors" >
                         //Behavior - animation
                         //Object name = <xsl:value-of select="name" /> as <xsl:value-of select="type" /> - //With tags <xsl:for-each select="tags" >?</xsl:for-each> - //With variables <xsl:for-each select="variables" >?</xsl:for-each> - //With effects <xsl:for-each select="effects" >?</xsl:for-each>
@@ -433,7 +433,7 @@ Created By: Travis Berthelot
                         }
                     </xsl:for-each>
 
-                        this.gdUtil.globalsGameTickTimeDelayHelper.lastStartTime = gameTickTimeDelayHelper.startTime;
+                        this.gdUtil.globalsGameTickTimeDelayHelper.lastStartTime = this.gameTickTimeDelayHelper.startTime;
                     
                         } catch(Exception e) {
                             this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e);
@@ -493,7 +493,7 @@ Created By: Travis Berthelot
 
                                 //Rectangle 2
                                 final Rectangle <xsl:value-of select="name" />Rectangle = new Rectangle(
-                                    pointFactory.createXY(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
+                                    this.pointFactory.createXY(<xsl:value-of select="name" />X, <xsl:value-of select="name" />Y),
                                     <xsl:value-of select="name" />GDobject.Width(this.globals.graphics), <xsl:value-of select="name" />GDobject.Height(this.globals.graphics));
                                 <xsl:call-template name="globals" ><xsl:with-param name="name" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>.<xsl:value-of select="name" />RectangleList.add(<xsl:value-of select="name" />Rectangle);
                             }
@@ -545,7 +545,7 @@ Created By: Travis Berthelot
                             motionEventList.clear();
                         }
                         
-                        this.globals.lastMotionGestureInput = touchMotionGestureFactory.NO_MOTION;
+                        this.globals.lastMotionGestureInput = this.touchMotionGestureFactory.NO_MOTION;
                     
                     //eventsClose - START
                     <xsl:call-template name="eventsClose" >
@@ -558,7 +558,7 @@ Created By: Travis Berthelot
 
                     public void reinitInstances() throws Exception {
                     
-                        if(!clear) {
+                        if(!this.clear) {
                             //this.logUtil.putF("scene - reinitInstances - duplicate", this, this.commonStrings.PROCESS);
                             //throw new RuntimeException();
                             return;
@@ -574,7 +574,7 @@ Created By: Travis Berthelot
                         </xsl:with-param>
                     </xsl:call-template>
 
-                        builder.build();
+                        this.builder.build();
 
                         <xsl:variable name="hasHighscoreSubmissionComplete" >
                             <xsl:for-each select="variables" >
@@ -588,7 +588,7 @@ Created By: Travis Berthelot
                         this.globals.highscoreSubmissionComplete = false;
                         </xsl:if>
 
-                        clear = false;
+                        this.clear = false;
                     }
                     
                     @Override
@@ -596,7 +596,7 @@ Created By: Travis Berthelot
 
                         //this.logUtil.putF("scene - clear", this, this.commonStrings.PROCESS);
 
-                        clear = true;
+                        this.clear = true;
 
                         GDFormInputProcessor.getInstance().reset();
 
@@ -616,7 +616,7 @@ Created By: Travis Berthelot
 
             </xsl:for-each>
 
-                        gdNodes.clear();
+                        this.gdNodes.clear();
                         
                     }
 

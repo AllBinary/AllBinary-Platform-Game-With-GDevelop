@@ -122,13 +122,13 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.putF(commonStrings.START, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(this.commonStrings.START, this, this.commonStrings.CONSTRUCTOR);
                         
                         <xsl:if test="string-length($layoutName) > 0" >
                         <xsl:for-each select="/game/properties/customTextures" >
                             if (!TextureManager.getInstance().contains(threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>)) {
                             final TextureListFactory textureListFactory = TextureListFactory.getInstance();
-                            textureListFactory.loadTexture(gl, glInstanceVersion, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
+                            this.textureListFactory.loadTexture(gl, glInstanceVersion, threedAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="translate(texture, '.', '_')" /></xsl:with-param></xsl:call-template>);
                             }
                         </xsl:for-each>
                         </xsl:if>
@@ -188,16 +188,16 @@ Created By: Travis Berthelot
 
                         //progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
-                        final String glInstanceVersion = openGLCapabilities.glInstanceVersion;
+                        final String glInstanceVersion = this.openGLCapabilities.glInstanceVersion;
 
-                        final String mappedTexture = threedObjResources.get(textureName);
+                        final String mappedTexture = this.threedObjResources.get(textureName);
                         if(TextureManager.getInstance().contains(mappedTexture)) {
                             return;
                         }
-                        textureListFactory.loadTexture(gl, glInstanceVersion, mappedTexture);
+                        this.textureListFactory.loadTexture(gl, glInstanceVersion, mappedTexture);
 
-                        object3dContainerUtil.replaceTextures(trackObject3dContainer, mappedTexture);
-                        min3dSceneResourcesFactory.add(mappedTexture, new Object3d[] {trackObject3dContainer});
+                        this.object3dContainerUtil.replaceTextures(trackObject3dContainer, mappedTexture);
+                        this.min3dSceneResourcesFactory.add(mappedTexture, new Object3d[] {trackObject3dContainer});
                     }
 
                 }

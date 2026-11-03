@@ -2453,7 +2453,7 @@ Created By: Travis Berthelot
                                 return;
                             }
                         
-                            gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
+                            this.gameGlobalsFactory.point = motionGestureEvent.getCurrentPoint();
 
                             this.globals.motionEventListOfList[this.globals.inUseMotionEventListIndex].add(motionGestureEvent);
 

@@ -136,9 +136,9 @@ public class PlatformAssetManager {
     
     public InputStream getText(final String resource, final InputStream inputStream) {
         
-        final RequestedText requestedText2 = (RequestedText) textToResource.get(resource);
+        final RequestedText requestedText2 = (RequestedText) this.textToResource.get(resource);
         if(requestedText2 != null <xsl:text disable-output-escaping="yes" >&amp;&amp;</xsl:text> requestedText2.text != null) {
-            logUtil.putF("Text already loaded: " + resource, this, GET_TEXT);
+            this.logUtil.putF("Text already loaded: " + resource, this, this.GET_TEXT);
             final byte[] byteArray = requestedText2.text.getBytes();
             final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
             //return new Object[] {byteArrayInputStream, text.length()};
@@ -146,15 +146,15 @@ public class PlatformAssetManager {
         } else {
             
             if(requestedText2 != null) {
-                logUtil.putF("Already Loading Text: " + resource, this, GET_TEXT);
+                this.logUtil.putF("Already Loading Text: " + resource, this, this.GET_TEXT);
             } else {
-                logUtil.putF("Loading Text: " + resource, this, GET_TEXT);
+                this.logUtil.putF("Loading Text: " + resource, this, this.GET_TEXT);
 
                 final String text = this.getTextResource(resource).getText();
                 final RequestedText requestedText = new RequestedText();
                 requestedText.text = text;
-                textToResource.put(resource, requestedText);
-                logUtil.putF("Loaded Text: " + text.length(), this, GET_TEXT);
+                this.textToResource.put(resource, requestedText);
+                this.logUtil.putF("Loaded Text: " + text.length(), this, this.GET_TEXT);
                 
 //                final ResourceCallback callback = new ResourceCallback() {
 //                    @Override

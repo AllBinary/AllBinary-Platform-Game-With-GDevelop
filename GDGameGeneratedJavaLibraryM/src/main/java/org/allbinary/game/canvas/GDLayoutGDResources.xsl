@@ -181,7 +181,7 @@ Created By: Travis Berthelot
             
                     final float scale = GDConfig.getInstance().getScaleThreed(GD<xsl:value-of select="$layoutIndex" />LayoutUtil.getInstance().scale);
 
-                    animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />);
+                    this.animationInterfaceFactoryInterfaceFactory.init(<xsl:value-of select="$layoutIndex" />);
                                         
                     <xsl:call-template name="objectsAssign" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -200,7 +200,7 @@ Created By: Travis Berthelot
                     <xsl:for-each select="objectsGroups" >
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
-                            <xsl:value-of select="$name" />GDGameLayerFactoryList.add(<xsl:value-of select="name" />GDGameLayerFactory);
+                            this.<xsl:value-of select="$name" />GDGameLayerFactoryList.add(this.<xsl:value-of select="name" />GDGameLayerFactory);
                         </xsl:for-each>
                     </xsl:for-each>
                     //objectsGroups - END

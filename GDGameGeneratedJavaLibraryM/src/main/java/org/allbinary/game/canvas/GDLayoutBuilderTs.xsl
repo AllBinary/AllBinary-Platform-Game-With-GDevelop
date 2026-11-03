@@ -414,7 +414,7 @@ Created By: Travis Berthelot
                         //groupLayerManagerListener.log();
 
                         this.logUtil.putF("DepartScene - completed newCanvas is now false", this, this.commonStrings.PROCESS);
-                        gameGlobalsFactory.newCanvas = false;
+                        this.gameGlobalsFactory.newCanvas = false;
                         this.globals.eventListenerInterfaceLastPoint.initialized = true;
 
                         } catch(Exception e) {

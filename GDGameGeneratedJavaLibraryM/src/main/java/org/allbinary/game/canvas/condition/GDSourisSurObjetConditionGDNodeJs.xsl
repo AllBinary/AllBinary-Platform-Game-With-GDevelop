@@ -230,14 +230,14 @@ Created By: Travis Berthelot
                                 
                                 //this.logUtil.putF("<xsl:value-of select="text()" />Rectangle: " + <xsl:value-of select="text()" />Rectangle.toString(), this, this.commonStrings.PROCESS);
                                 //if (rectangleCollisionUtil.isInside(rectangePoint.getX(), rectangePoint.getY() - 2, <xsl:value-of select="text()" />Rectangle.getMaxX(), <xsl:value-of select="text()" />Rectangle.getMaxY() + 2, point.getX(), point.getY()))
-                                if (<xsl:if test="$inverted = 'true'" >!</xsl:if>rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
+                                if (<xsl:if test="$inverted = 'true'" >!</xsl:if>this.rectangleCollisionUtil.isInside(gameLayer.getXP(), gameLayer.getYP() - 2, gameLayer.getX2(), gameLayer.getY2() + 2, point.getX(), point.getY()))
                                 {
                                     //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "Inside: " + lastMotionGestureInput, this, this.commonStrings.PROCESS);
 
                                     <xsl:if test="contains($press, 'found')" >
                                     //press
                                     //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                                    if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
+                                    if (lastMotionGestureInput == this.touchMotionGestureFactory.PRESSED) {
                                         
                                         <xsl:if test="not(contains($conditions, 'found'))" >
                                         //Assume press when not parent condition telling us.
@@ -252,7 +252,7 @@ Created By: Travis Berthelot
                                         
                                         return this.process();
                                         
-                                    } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                    } else if(lastMotionGestureInput == this.touchMotionGestureFactory.RELEASED) {
                                     
                                         //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="$conditionNodeId" /> + "release", this, this.commonStrings.PROCESS);
 
@@ -262,8 +262,8 @@ Created By: Travis Berthelot
                                     <xsl:if test="contains($release, 'found')" >
                                     //release
                                     //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                                    if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
-                                    } else if(lastMotionGestureInput == touchMotionGestureFactory.RELEASED) {
+                                    if (lastMotionGestureInput == this.touchMotionGestureFactory.PRESSED) {
+                                    } else if(lastMotionGestureInput == this.touchMotionGestureFactory.RELEASED) {
 
                                         runnable.run();
                                         return true;
@@ -357,7 +357,7 @@ Created By: Travis Berthelot
 
                                 return this.process();
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
                             return true;                   
                         }
@@ -395,7 +395,7 @@ Created By: Travis Berthelot
                     </xsl:if>
 
                     <xsl:if test="contains($press, 'found')" >
-                    gdNodes.runnableList.add(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
+                    this.gdNodes.runnableList.add(this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />]);
                     </xsl:if>
 
     </xsl:template>

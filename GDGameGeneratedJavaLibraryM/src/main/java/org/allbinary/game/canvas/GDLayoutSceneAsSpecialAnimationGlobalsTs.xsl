@@ -145,7 +145,7 @@ Created By: Travis Berthelot
                         protected final LogUtil logUtil = LogUtil.getInstance();
                         private final CommonStrings commonStrings = CommonStrings.getInstance();
                         private final StringUtil stringUtil = StringUtil.getInstance();
-                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
+                        private final String EMPTY_STRING = this.stringUtil.EMPTY_STRING;
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final GroupFactory groupFactory = GroupFactory.getInstance();
@@ -520,7 +520,7 @@ Created By: Travis Berthelot
 
                         };
                         
-                        layerManagerEventListener = new LayoutSceneLayerManagerEventListener(this);
+                        this.layerManagerEventListener = new LayoutSceneLayerManagerEventListener(this);
                         layerManagerEventHandler.addListener(this.layerManagerEventListener);
                         
                     }

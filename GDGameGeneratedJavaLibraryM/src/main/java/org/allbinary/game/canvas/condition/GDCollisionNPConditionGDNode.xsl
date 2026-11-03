@@ -144,7 +144,7 @@ Created By: Travis Berthelot
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer2, gameLayer)) {
 
                             if(gameLayer2.isDestroyed()) {
-                               this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, this.commonStrings.PROCESS);
+                               this.logUtil.putF(this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, this.commonStrings.PROCESS);
                                return result;
                             } //else {
                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB process collision", this, this.commonStrings.PROCESS);
@@ -257,7 +257,7 @@ Created By: Travis Berthelot
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if>gameLayer2.getCollidableInferface().isCollision(gameLayer2, gameLayer)) {
 
                             if(gameLayer2.isDestroyed()) {
-                               this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, this.commonStrings.PROCESS);
+                               this.logUtil.putF(this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " Collision not allowed is already destroyed", this, this.commonStrings.PROCESS);
                                return result;
                             } //else {
                                //this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " TWB process collision", this, this.commonStrings.PROCESS);
@@ -330,7 +330,7 @@ Created By: Travis Berthelot
                         if(<xsl:if test="$inverted = 'true'" >!</xsl:if><xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />.getCollidableInferface().isCollision(<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />, <xsl:value-of select="$name2" />GDGameLayer)) {
 
                             if(<xsl:value-of select="$name" />GDGameLayer<xsl:value-of select="count(//objectsGroups) + count(//objects)" />.isDestroyed()) {
-                               this.logUtil.putF(CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " GD Collision not allowed is already destroyed", this, this.commonStrings.PROCESS);
+                               this.logUtil.putF(this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> + " GD Collision not allowed is already destroyed", this, this.commonStrings.PROCESS);
                                return result;
                             }
                             //CollisionNP - <xsl:value-of select="$name" />=<xsl:value-of select="$id" /> - parent or sibling usage <xsl:value-of select="count(//objectsGroups[number(substring(generate-id(), 2) - 65536) &lt; $id])" /> + <xsl:value-of select="count(//objects[number(substring(generate-id(), 2) - 65536) &lt; $id])" />
@@ -352,7 +352,7 @@ Created By: Travis Berthelot
 <!--                        <xsl:call-template name="listEndings" ><xsl:with-param name="totalRecursions" >0</xsl:with-param><xsl:with-param name="layoutIndex" ><xsl:value-of select="$layoutIndex" /></xsl:with-param><xsl:with-param name="params" ><xsl:value-of select="$params" /></xsl:with-param><xsl:with-param name="nodeId" ><xsl:value-of select="$nodeId" /></xsl:with-param><xsl:with-param name="offsetRequestForOtherParam" >found<xsl:value-of select="$name" /></xsl:with-param></xsl:call-template>-->
 
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.CONDITION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
 
                         return result;

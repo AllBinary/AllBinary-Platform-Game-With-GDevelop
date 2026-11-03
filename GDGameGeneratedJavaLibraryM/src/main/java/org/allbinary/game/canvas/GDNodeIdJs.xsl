@@ -401,7 +401,7 @@
             //Condition nodeId=<xsl:value-of select="generate-id()" /> - <xsl:value-of select="number(substring(generate-id(), 2) - 65536)" /> type=<xsl:value-of select="type/value" /> inverted=<xsl:value-of select="type/inverted" /> parameters=<xsl:value-of select="$parametersAsString" />
             //Condition - //GlobalVariableAsBoolean - call - //release=<xsl:value-of select="$release" /> - //press=<xsl:value-of select="$press" /> //inverted=<xsl:value-of select="$inverted" /> - GDNode
                             //final MotionGestureInput motionGestureInput = motionGestureEvent.getMotionGesture();
-                            if (lastMotionGestureInput == touchMotionGestureFactory.PRESSED) {
+                            if (lastMotionGestureInput == this.touchMotionGestureFactory.PRESSED) {
             this.gameGlobals.nodeArray[this.gameGlobals.NODE_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />].process();
                             }
                         </xsl:if>
@@ -487,13 +487,13 @@
 <!--                //Conditions - <xsl:value-of select="$totalRecursions" />-->
                 <xsl:if test="type/value = 'MouseButtonReleased'" >
                             //MouseButtonReleased - eventListener
-                            if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            if(motionGestureInput == this.touchMotionGestureFactory.RELEASED) {
                                 this.globals.mouseButtonReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, this.globals.lastMotionGestureInput);
                             }
                 </xsl:if>
                 <xsl:if test="type/value = 'MouseButtonFromTextReleased'" >
                             //MouseButtonReleased - eventListener
-                            if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            if(motionGestureInput == this.touchMotionGestureFactory.RELEASED) {
                                 this.globals.mouseButtonFromTextReleasedGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, this.globals.lastMotionGestureInput);
                             }
                 </xsl:if>
@@ -508,7 +508,7 @@
                 <xsl:if test="type/value = 'SourisBouton'" >
                             //MouseButton - //SourisBouton - eventListener
                             this.globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processMotion(motionGestureEvent, this.globals.lastMotionGestureInput);
-                            if(motionGestureInput == touchMotionGestureFactory.RELEASED) {
+                            if(motionGestureInput == this.touchMotionGestureFactory.RELEASED) {
                                 this.globals.mouseButtonGDNode_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />.processReleased();
                             }
                 </xsl:if>

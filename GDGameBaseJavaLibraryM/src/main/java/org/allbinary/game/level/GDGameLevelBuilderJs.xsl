@@ -248,8 +248,8 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
                     </xsl:if>
                     <xsl:if test="content/generator = 'DungeonGenerator'" >
         //"generator": "DungeonGenerator",
-        if(!gameGlobals.RandomDungeon) {
-            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
+        if(!this.gameGlobals.RandomDungeon) {
+            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) this.globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
             final int size = platformerMap.placementIntArray.length;
             for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 platformerMap.placementXIntArray[index] *= 2;
@@ -265,14 +265,14 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
             final int[][] mapData = dungeonGenerator.generate();
             generatedWidth = mapData.length;
             generatedHeight = mapData[0].length;
-            final byte[] data = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
+            final byte[] data = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, this.gameGlobals.tileHeight).getBytes();
             tileMapInputStream2 = new ByteArrayInputStream(data);
         }
                     </xsl:if>
                     <xsl:if test="content/generator = 'SameSizeGenerator'" >
         //"generator": "SameSizeGenerator",
-        if(!gameGlobals.RandomDungeon) {
-            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
+        if(!this.gameGlobals.RandomDungeon) {
+            final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) this.globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
             final int size = platformerMap.placementIntArray.length;
             for (int index = 0; index <xsl:text disable-output-escaping="yes" >&lt;</xsl:text> size; index++) {
                 platformerMap.placementXIntArray[index] *= 2;
@@ -290,7 +290,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
                 new org.allbinary.game.behavior.topview.placement.PropsTileMapPlacementVisitor();
             tileMapPlacementVisitor.visit(lastMap, mapData);
 
-            final byte[] data = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, gameGlobals.tileHeight).getBytes();
+            final byte[] data = tiledJSONUtil.generateJSONAsString(mapData, gameGlobals.tileWidth, this.gameGlobals.tileHeight).getBytes();
             tileMapInputStream2 = new ByteArrayInputStream(data);
         }
                     </xsl:if>
@@ -345,7 +345,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
         return map;
         } catch(Exception e) {
         this.logUtil.put(this.commonStrings.EXCEPTION, this, this.commonStrings.PROCESS, e);
-        gameGlobals.RandomDungeon = false;
+        this.gameGlobals.RandomDungeon = false;
         return this.create<xsl:value-of select="name" />TiledMap(lastMap, tileSetImageHeightArray);
         }
     }
@@ -410,7 +410,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
 
         //this.logUtil.put("Loading Tiled Map Asset: <xsl:value-of select="name" />", this, this.commonStrings.PROCESS);
                 
-        final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
+        final Image[] <xsl:value-of select="name" />ImageArray = (Image[]) imageCache.getHashtableP().get(this.specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         
         <xsl:variable name="imageWithExtension" select="content/tilemapAtlasImage" />
         <xsl:if test="$imageWithExtension" >
@@ -418,7 +418,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
         final int resourceIndex = imageCache.getIndex(gdResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="$image" /></xsl:with-param></xsl:call-template>);
         </xsl:if>
         <xsl:if test="not($imageWithExtension)" >
-        final int resourceIndex = imageCache.getIndex(specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
+        final int resourceIndex = imageCache.getIndex(this.specialAnimationResources.<xsl:call-template name="upper-case" ><xsl:with-param name="text" ><xsl:value-of select="name" /></xsl:with-param></xsl:call-template>_IMAGE_ARRAY_NAME);
         </xsl:if>
         final int[] tileSetImageHeightArray = new int[] { GDLazyResources.getInstance().imageResourceHeightArray[resourceIndex] };
 
@@ -496,7 +496,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
                 </xsl:if>
                 <xsl:if test="contains($tileMapGenerator, 'DungeonGenerator')" >
         final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
-        if(gameGlobals.RandomDungeon) {
+        if(this.gameGlobals.RandomDungeon) {
             this.setStartPoint(geographicMapInterfaceArray);
         }
                 </xsl:if>
@@ -621,7 +621,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
         //this.logUtil.put("Find Start Position", this, this.commonStrings.PROCESS);
 
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
-        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
+        final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = ((GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) ((GDGameLayer) this.globals.<xsl:value-of select="name" />GDGameLayerList.get(0)).gdObject);
         int placementTotal = 0;
         int placementTotal1 = 0;
         int placementTotal2 = 0;
@@ -850,7 +850,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
         this.logUtil.putF("placementTotal2: " + placementTotal2, this, this.commonStrings.PROCESS);
         this.logUtil.putF("placementTotal1: " + placementTotal1, this, this.commonStrings.PROCESS);
         this.logUtil.putF("placementTotal: " + placementTotal, this, this.commonStrings.PROCESS);
-        globals.placementMax = placementTotal - 2;
+        this.globals.placementMax = placementTotal - 2;
     }
 
 //    private int lastWidthUsed = 0;
@@ -904,7 +904,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
 
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 
-        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) this.globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
         final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject;
         //final GDObject Wall = (GDObject) ((GDGameLayer) globals.WallGDGameLayerList.get(0)).gdObject;
         //final GDGameLayer wallGDGameLayer = (GDGameLayer) globals.WallGDGameLayerList.get(0);
@@ -970,7 +970,7 @@ public class GDGame<xsl:value-of select="$layoutName" />LevelBuilder implements 
 
         final GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals globals = GD<xsl:value-of select="$layoutIndex" />SpecialAnimationGlobals.getInstance();
 
-        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
+        final GDCustomGameLayer <xsl:value-of select="name" />GDGameLayer = (GDCustomGameLayer) this.globals.<xsl:value-of select="name" />GDGameLayerList.get(0);
         final GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" /> platformerMap = (GD<xsl:value-of select="$layoutIndex" />GDObjectsFactory.<xsl:value-of select="name" />) <xsl:value-of select="name" />GDGameLayer.gdObject;
         //final GDObject Wall = (GDObject) ((GDGameLayer) globals.WallGDGameLayerList.get(0)).gdObject;
         //final GDGameLayer wallGDGameLayer = (GDGameLayer) globals.WallGDGameLayerList.get(0);

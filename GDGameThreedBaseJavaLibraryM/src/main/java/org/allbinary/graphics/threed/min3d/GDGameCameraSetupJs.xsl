@@ -243,8 +243,8 @@ public class GD<GD_CURRENT_INDEX>GameCameraSetup extends GDGameCameraSetup
                 
                 final GDGameGlobals gameGlobals = GDGameGlobals.getInstance();
                 
-                if(gameGlobals.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
-                    final GDGameLayer playerGDGameLayer = (GDGameLayer) gameGlobals.PlayerGDGameLayerList.get(0);
+                if(this.gameGlobals.PlayerGDGameLayerList.size() <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> 0) {
+                    final GDGameLayer playerGDGameLayer = (GDGameLayer) this.gameGlobals.PlayerGDGameLayerList.get(0);
 
                     final ThreedAnimation threedAnimation = (ThreedAnimation) playerGDGameLayer.getIndexedAnimationInterface();
 

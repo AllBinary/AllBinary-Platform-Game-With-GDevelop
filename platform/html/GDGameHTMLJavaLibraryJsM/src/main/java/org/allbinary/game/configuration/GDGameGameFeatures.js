@@ -49,6 +49,6 @@ export class GDGameGameFeatures extends Object {
         ;
         multipleList.add(gameFeatureFactory.SOUND);
         multipleList.add(gameFeatureFactory.SCREEN_SHAKE);
-        GameFeatureChoiceGroups.getMultipleInstance().add(GRAPHICS_OPTIONS, multipleList);
+        GameFeatureChoiceGroups.getMultipleInstance().add(this.GRAPHICS_OPTIONS, multipleList);
     }
 }

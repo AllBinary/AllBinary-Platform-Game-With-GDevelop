@@ -111,7 +111,7 @@ Created By: Travis Berthelot
 
                         //try {
                         
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR);
+                            logUtil.putF(this.commonStrings.CONSTRUCTOR, this, this.commonStrings.CONSTRUCTOR);
 
                     <xsl:call-template name="threedResourceLoadingCalls" >
                         <xsl:with-param name="enlargeTheImageBackgroundForRotation" >
@@ -162,16 +162,16 @@ Created By: Travis Berthelot
 
                         //progressCanvas.addEarlyPortion(portion, loadingString, index++);
 
-                        final String glInstanceVersion = openGLCapabilities.glInstanceVersion;
+                        final String glInstanceVersion = this.openGLCapabilities.glInstanceVersion;
 
-                        final String mappedTexture = threedObjResources.get(textureName);
+                        final String mappedTexture = this.threedObjResources.get(textureName);
                         if(TextureManager.getInstance().contains(mappedTexture)) {
                             return;
                         }
-                        textureListFactory.loadTexture(gl, glInstanceVersion, mappedTexture);
+                        this.textureListFactory.loadTexture(gl, glInstanceVersion, mappedTexture);
 
-                        object3dContainerUtil.replaceTextures(trackObject3dContainer, mappedTexture);
-                        min3dSceneResourcesFactory.add(mappedTexture, new Object3d[] {trackObject3dContainer});
+                        this.object3dContainerUtil.replaceTextures(trackObject3dContainer, mappedTexture);
+                        this.min3dSceneResourcesFactory.add(mappedTexture, new Object3d[] {trackObject3dContainer});
                     }
 
                 }

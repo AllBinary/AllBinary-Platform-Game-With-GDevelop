@@ -49,15 +49,15 @@ Created By: Travis Berthelot
                             try {
 
                                 //TWB - maybe exclude logic when not from parent input
-                                final boolean inputOnNewScene = gameGlobalsFactory.newDisplaybleTime <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gameTickTimeDelayHelper.startTime - 250;
+                                final boolean inputOnNewScene = this.gameGlobalsFactory.newDisplaybleTime <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> this.gameTickTimeDelayHelper.startTime - 250;
                                 //this.logUtil.putF("gameGlobalsFactory.newDisplaybleTime > gameTickTimeDelayHelper.startTime - 250: " + gameGlobalsFactory.newDisplaybleTime + " > " + (gameTickTimeDelayHelper.startTime - 250), this, this.commonStrings.PROCESS);
                                 
-                                if(gameGlobalsFactory.newCanvas) {
-                                    this.logUtil.putF(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                                if(this.gameGlobalsFactory.newCanvas) {
+                                    this.logUtil.putF(this.gdStrings.CANVAS_NEW + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                                 } else if(inputOnNewScene) {
-                                    this.logUtil.putF(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                                    this.logUtil.putF(this.gdStrings.SCENE_NEW + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                                 } else {
-                                    this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                                    this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                                     PathFindingThreadPool.getInstance().clear();
                                     final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                     final MyCanvas abCanvas = (MyCanvas) abToGBUtil.abCanvas;
@@ -66,7 +66,7 @@ Created By: Travis Berthelot
                                 }
 
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
 
                             return true;
@@ -90,7 +90,7 @@ Created By: Travis Berthelot
 
                             return this.process();
                         } catch(Exception e) {
-                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                            this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                         }
                         return true;                   
                     }
@@ -149,19 +149,19 @@ Created By: Travis Berthelot
 
                             try {
 
-                                this.logUtil.putF(ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                                this.logUtil.putF(this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
 
                                 final ABToGBUtil abToGBUtil = ABToGBUtil.getInstance();
                                 final MyCanvas abCanvas = (MyCanvas) abToGBUtil.abCanvas;
 
                                 //TWB - maybe exclude logic when not from parent input
-                                final boolean inputOnNewScene = gameGlobalsFactory.newDisplaybleTime <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> gameTickTimeDelayHelper.startTime - 250;
+                                final boolean inputOnNewScene = this.gameGlobalsFactory.newDisplaybleTime <xsl:text disable-output-escaping="yes" >&gt;</xsl:text> this.gameTickTimeDelayHelper.startTime - 250;
                                 //this.logUtil.putF("gameGlobalsFactory.newDisplaybleTime > gameTickTimeDelayHelper.startTime - 250: " + gameGlobalsFactory.newDisplaybleTime + " > " + (gameTickTimeDelayHelper.startTime - 250), this, this.commonStrings.PROCESS);
 
-                                if(gameGlobalsFactory.newCanvas) {
-                                    this.logUtil.putF(gdStrings.CANVAS_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                                if(this.gameGlobalsFactory.newCanvas) {
+                                    this.logUtil.putF(this.gdStrings.CANVAS_NEW + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                                 } else if(inputOnNewScene) {
-                                    this.logUtil.putF(gdStrings.SCENE_NEW + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
+                                    this.logUtil.putF(this.gdStrings.SCENE_NEW + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS);
                                 } else {
                                     //<xsl:value-of select="$command" />
                                     <xsl:if test="contains($command, 'https://localhost/about.html')" >
@@ -177,7 +177,7 @@ Created By: Travis Berthelot
                                 }
 
                             } catch(Exception e) {
-                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
+                                this.logUtil.put(this.commonStrings.EXCEPTION_LABEL + this.ACTION_AS_STRING_<xsl:value-of select="number(substring(generate-id(), 2) - 65536)" />, this, this.commonStrings.PROCESS, e);
                             }
 
                             return true;

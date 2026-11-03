@@ -162,7 +162,7 @@ Created By: Travis Berthelot
                         }
 
                         private final StringUtil stringUtil = StringUtil.getInstance();
-                        private final String EMPTY_STRING = stringUtil.EMPTY_STRING;
+                        private final String EMPTY_STRING = this.stringUtil.EMPTY_STRING;
                         private final NullUtil nullUtil = NullUtil.getInstance();
                         private final ArrayUtil arrayUtil = ArrayUtil.getInstance();
                         private final BasicColorUtil basicColorUtil = BasicColorUtil.getInstance();
