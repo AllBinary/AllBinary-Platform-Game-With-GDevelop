@@ -489,9 +489,9 @@ Created By: Travis Berthelot
                         <xsl:variable name="name" ><xsl:value-of select="name" /></xsl:variable>
                         <xsl:for-each select="objects" >
                             //<xsl:value-of select="$name" />GDObjectListOfList.add(<xsl:value-of select="name" />GDObjectList);
-                            <xsl:value-of select="$name" />GDGameLayerListOfList.add(<xsl:value-of select="name" />GDGameLayerList);
-                            <xsl:value-of select="$name" />GDGameLayerRemoveListOfList.add(<xsl:value-of select="name" />RemoveList);
-                            <xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(<xsl:value-of select="name" />CacheGDGameLayerList);
+                            this.<xsl:value-of select="$name" />GDGameLayerListOfList.add(this.<xsl:value-of select="name" />GDGameLayerList);
+                            this.<xsl:value-of select="$name" />GDGameLayerRemoveListOfList.add(this.<xsl:value-of select="name" />RemoveList);
+                            this.<xsl:value-of select="$name" />CacheGDGameLayerListOfList.add(this.<xsl:value-of select="name" />CacheGDGameLayerList);
                             //<xsl:value-of select="$name" />GDConditionWithGroupActionsList.add(<xsl:value-of select="name" />GDConditionWithGroupActions);
                         </xsl:for-each>
                     </xsl:for-each>
@@ -525,7 +525,7 @@ Created By: Travis Berthelot
                         };
                         
                         layerManagerEventListener = new LayoutSceneLayerManagerEventListener(this);
-                        layerManagerEventHandler.addListener(layerManagerEventListener);
+                        layerManagerEventHandler.addListener(this.layerManagerEventListener);
                         
                     }
 

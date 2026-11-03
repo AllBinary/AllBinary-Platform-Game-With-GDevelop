@@ -748,7 +748,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
 
     }
     
-    public void generateLayouts(final int startIndex, final int size, final String gameXmlAsString, final String layoutGameXmlAsString, final StringMaker stringMaker)
+    public void generateLayouts(final int startIndex, final int size, final String gameXmlAsString, final String layoutGameXmlAsString, final String sceneGlobalsGameXmlAsString, final StringMaker stringMaker)
         throws Exception {
 
         //final SharedBytes sharedBytes = SharedBytes.getInstance();
@@ -770,7 +770,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             layoutGameXmlAsString,
             layoutGameXmlAsString,
             layoutGameXmlAsString,
-            gameXmlAsString,
+            sceneGlobalsGameXmlAsString,
             layoutGameXmlAsString,
             gameXmlAsString,};
 
@@ -1209,6 +1209,42 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
         return c == '.' || c == '_' || Character.isLetterOrDigit(c);
     }
 
+    //Adds the prefix after Variable(, VariableString(, VariableChildCount(, and ToJSON( for layout variables.
+    private String addPrefixToLayoutVariables(final String xmlAsString, final String prefix, final StringMaker stringMaker) {
+        String result = xmlAsString;
+        final int size2 = VARIABLE_ARRAY.length;
+        for (int index2 = 0; index2 < size2; index2++) {
+            final String VARIABLE = VARIABLE_ARRAY[index2];
+            for (int index = 0; index >= 0;) {
+                index = result.indexOf(VARIABLE, index + VARIABLE.length());
+                if (index < 0) {
+                    break;
+                }
+                //skip digits
+                if (Character.isDigit(result.charAt(index + VARIABLE.length()))) {
+                    //skip GObject
+                } else if (index >= 1 && result.charAt(index - 1) == '.') {
+                    //skip graphics
+                } else if (result.charAt(index + VARIABLE.length()) == 'g') {
+                    //skip this.gameGlobals. and this.globals.
+                } else if (result.startsWith(THIS, index + VARIABLE.length())) {
+                    //skip max_scale
+                    //} else if(result.charAt(index + VARIABLE.length()) == 'm' && result.charAt(index + VARIABLE.length() + 1) == 'a') {
+                    //skip angle
+                    //} else if(result.charAt(index + VARIABLE.length()) == 'a') {
+                    //skip movement_angle
+                    //} else if(result.charAt(index + VARIABLE.length()) == 'm' && result.charAt(index + VARIABLE.length() + 1) == 'o') {
+                    //opacity
+                    //} else if(result.charAt(index + VARIABLE.length()) == 'o') {
+                } else {
+                    stringMaker.delete(0, stringMaker.length());
+                    result = stringMaker.append(result.substring(0, index + VARIABLE.length())).append(prefix).append(result.substring(index + VARIABLE.length())).toString();
+                }
+            }
+        }
+        return result;
+    }
+
     public void process(final int startIndex, final GDGameInfo gdGameInfo, final boolean[] finished) {
         try {
             final int layoutTotal = gdGameInfo.layoutTotal;
@@ -1225,34 +1261,10 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                 gameXmlAsString = replace.all(gameXmlAsString);
             }
 
-            String layoutGameXmlAsString = new String(gameXmlAsString);
-            final int size2 = VARIABLE_ARRAY.length;
-            for (int index2 = 0; index2 < size2; index2++) {
-                final String VARIABLE = VARIABLE_ARRAY[index2];
-                for (int index = 0; index >= 0;) {
-                    index = layoutGameXmlAsString.indexOf(VARIABLE, index + VARIABLE.length());
-                    //skip digits
-                    if (Character.isDigit(layoutGameXmlAsString.charAt(index + VARIABLE.length()))) {
-                        //skip GObject
-                    } else if (index >= 1 && layoutGameXmlAsString.charAt(index - 1) == '.') {
-                        //skip graphics
-                    } else if (layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'g') {
-                        //skip this.gameGlobals. and this.globals.
-                    } else if (layoutGameXmlAsString.startsWith(THIS, index + VARIABLE.length())) {
-                        //skip max_scale
-                        //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'a') {
-                        //skip angle
-                        //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'a') {
-                        //skip movement_angle
-                        //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'm' && layoutGameXmlAsString.charAt(index + VARIABLE.length() + 1) == 'o') {
-                        //opacity
-                        //} else if(layoutGameXmlAsString.charAt(index + VARIABLE.length()) == 'o') {
-                    } else {
-                        stringMaker.delete(0, stringMaker.length());
-                        layoutGameXmlAsString = stringMaker.append(layoutGameXmlAsString.substring(0, index + VARIABLE.length())).append(GLOBALS).append(layoutGameXmlAsString.substring(index + VARIABLE.length())).toString();
-                    }
-                }
-            }
+            //Layout variables are fields of the layout globals class
+            String layoutGameXmlAsString = this.addPrefixToLayoutVariables(gameXmlAsString, GLOBALS, stringMaker);
+            //The layout globals class uses its own layout variable fields
+            String sceneGlobalsGameXmlAsString = this.addPrefixToLayoutVariables(gameXmlAsString, THIS, stringMaker);
 
             final int layoutGameXmlReplaceTotal = LAYOUT_GAME_XML_REPLACE_FIND_ARRAY.length;
             for (int index = 0; index < layoutGameXmlReplaceTotal; index++) {
@@ -1263,9 +1275,11 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
             //Add this before all method calls here
             gameXmlAsString = this.addThisToGDUtilLocalCalls(gameXmlAsString, stringMaker);
             layoutGameXmlAsString = this.addThisToGDUtilLocalCalls(layoutGameXmlAsString, stringMaker);
+            sceneGlobalsGameXmlAsString = this.addThisToGDUtilLocalCalls(sceneGlobalsGameXmlAsString, stringMaker);
 
             final String gameXmlAsString2 = gameXmlAsString;
             final String layoutGameXmlAsString2 = layoutGameXmlAsString;
+            final String sceneGlobalsGameXmlAsString2 = sceneGlobalsGameXmlAsString;
 
             final Runnable runnable = new Runnable() {
                 public void run() {
@@ -1288,7 +1302,7 @@ public class GDLayoutsToAllBinaryLayoutGenerator {
                     try {
                         final StringMaker stringMaker = new StringMaker();
                         final TimeDelayHelper timeDelayHelper = new TimeDelayHelper(0);
-                        generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, stringMaker);
+                        generateLayouts(startIndex, layoutTotal, gameXmlAsString2, layoutGameXmlAsString2, sceneGlobalsGameXmlAsString2, stringMaker);
                         stringMaker.delete(0, stringMaker.length());
                         System.out.println(stringMaker.append(GENERATE_LAYOUTS).append(ELAPSED_TIME).appendlong(timeDelayHelper.getElapsedTNT()).toString());
                         finished[2] = true;
