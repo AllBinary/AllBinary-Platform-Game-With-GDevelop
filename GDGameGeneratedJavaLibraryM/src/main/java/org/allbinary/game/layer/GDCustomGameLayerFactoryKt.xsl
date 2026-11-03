@@ -60,8 +60,8 @@ open public class GDCustomGameLayerFactory : GDGameLayerFactory
         animationBehaviorFactory<xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >, true</xsl:if><xsl:for-each select="resetAnimationBehavior" >, <xsl:value-of select="text()" /></xsl:for-each></xsl:for-each>) { <xsl:for-each select="properties" ><xsl:if test="not(resetAnimationBehavior)" >//Using default true value when not in json</xsl:if></xsl:for-each> //abjson resetAnimationBehavior: Boolean
 
         this.primitiveDrawingAnimationFactory = primitiveDrawingAnimationFactory
-        this.width = this.layerInfo.getWidth()
-        this.height = this.layerInfo.getHeight()
+        this.width = layerInfo.getWidth();
+        this.height = layerInfo.getHeight();
     }
 
     override fun create(layoutIndex: Int, name: String, gdObject: GDObject, scaleX: Float, scaleY: Float, collidableBehavior: GDConditionWithGroupActions): GDGameLayer {

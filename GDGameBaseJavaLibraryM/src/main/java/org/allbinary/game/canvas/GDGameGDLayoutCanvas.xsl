@@ -694,16 +694,16 @@ public class GDGame<xsl:value-of select="$layoutName" />Canvas extends CombatGam
 
     	this.gameLayerManager.paint(graphics, 0, 0);
 
-    	nonBotPaintable.paint(graphics);
+    	this.nonBotPaintable.paint(graphics);
 
-        gameSpecificPaintable.paint(graphics);
+        this.gameSpecificPaintable.paint(graphics);
 
-    	////gamePerformanceInitUpdatePaintable.paint(graphics);
-        //paintable.paint(graphics);
+    	////this.gamePerformanceInitUpdatePaintable.paint(graphics);
+        //this.paintable.paint(graphics);
 
-        touchPaintable.paint(graphics);
+        this.touchPaintable.paint(graphics);
 
-        screenCapture.saveFrame();
+        this.screenCapture.saveFrame();
 
         this.getTouchPaintableP().paint(graphics);
         

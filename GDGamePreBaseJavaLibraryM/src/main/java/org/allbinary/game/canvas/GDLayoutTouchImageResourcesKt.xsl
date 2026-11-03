@@ -139,7 +139,7 @@ Created By: Travis Berthelot
 
                         //try {
 
-                            logUtil.putF(commonStrings.CONSTRUCTOR, this, commonStrings.CONSTRUCTOR)
+                            this.logUtil.putF(this.commonStrings.CONSTRUCTOR, this, this.commonStrings.CONSTRUCTOR);
 
                             val pointFactory: PointFactory = PointFactory.getInstance()
 
