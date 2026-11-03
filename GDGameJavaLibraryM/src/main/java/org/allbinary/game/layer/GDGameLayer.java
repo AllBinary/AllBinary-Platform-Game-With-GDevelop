@@ -118,7 +118,22 @@ public class GDGameLayer
         public void processt(final long timeDelta) throws Exception {
             this.gameLayer.move();
         }
-    };    
+    };
+
+    class MoveAndUpdateProcessor extends Processor{
+
+        private final GDGameLayer gameLayer;
+
+        MoveAndUpdateProcessor(final GDGameLayer gameLayer) {
+            this.gameLayer = gameLayer;
+        }
+
+        @Override
+        public void processt(final long timeDelta) throws Exception {
+            this.gameLayer.move();
+            this.gameLayer.updateGDObject(timeDelta);
+        }
+    };
 
     protected Processor moveProcessor = new MoveProcessor(this);
     protected Processor processor = this.moveProcessor;
@@ -497,13 +512,7 @@ public class GDGameLayer
         //TWB - The ChangePlan might cause this logic instead.
         if(clearing == 1) {
             if(this.processor == this.moveProcessor) {
-                this.processor = new Processor() {
-                    @Override
-                    public void processt(final long timeDelta) throws Exception {
-                        move();
-                        updateGDObject(timeDelta);
-                    }
-                };
+                this.processor = new MoveAndUpdateProcessor(this);
             }
         }
     }
