@@ -16,6 +16,8 @@ import { BasicColorFactory } from '../../../../../org/allbinary/graphics/color/B
 //not GWT import const AllBinaryLayerManager
 //not plain js import { NullUtil } 
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
+//not plain js import { LogUtil } 
+const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
 //not plain js import { CommonStrings } 
@@ -75,6 +77,8 @@ export class GDWaypointBehavior2 extends GDWaypointBehavior {
                         {
                             const e = caught;
                             let commonStrings = CommonStrings.getInstance();
+                            ;
+                            let logUtil = LogUtil.getInstance();
                             ;
                             logUtil.put(commonStrings.EXCEPTION, this, "visit", e);
                             //if statement needs to be on the same line and ternary does not work the same way.

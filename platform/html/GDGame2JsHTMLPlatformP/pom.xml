@@ -33,6 +33,7 @@
         <!--
         <module>../GDGamePlayNWarM</module>
         -->
+        <module>../../../platform/html/GDGame2PlayNNIJsM</module>
         <module>../GDGame2ForJsPlayNM</module>
     </modules>
 

@@ -50,6 +50,10 @@ import { AllBinaryLayerManager } from '../../../../../org/allbinary/layer/AllBin
 const NullUtil = globalThis.org.allbinary.logic.NullUtil;
 type NullUtil<T = any, U = any> = typeof NullUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof NullUtil;
 
+//not plain js import { LogUtil } 
+const LogUtil = globalThis.org.allbinary.logic.communication.log.LogUtil;
+type LogUtil<T = any, U = any> = typeof LogUtil extends abstract new (...args: any[]) => infer Instance ? Instance : typeof LogUtil;
+
 //not plain js import { CommonSeps } 
 const CommonSeps = globalThis.org.allbinary.string.CommonSeps;
 type CommonSeps<T = any, U = any> = typeof CommonSeps extends abstract new (...args: any[]) => infer Instance ? Instance : typeof CommonSeps;
@@ -195,6 +199,9 @@ this.positionList!.clear();
   
 
     let commonStrings: CommonStrings = CommonStrings.getInstance()!;;
+    
+
+    let logUtil: LogUtil = LogUtil.getInstance()!;;
     
 logUtil!.put(commonStrings!.EXCEPTION, this, "visit", e);
     
